@@ -1,0 +1,12 @@
+{
+  "name": "subinternal",
+  "owner": { "name": "subinternal", "url": "https://subinternal.com" },
+  "description": "subinternal's plugins for Claude Code: clickd, to check and fix a site for search engines and AI assistants.",
+  "plugins": [
+    {
+      "name": "clickd",
+      "source": "./",
+      "description": "Check and fix a site for search engines and AI assistants, from inside Claude Code."
+    }
+  ]
+}
