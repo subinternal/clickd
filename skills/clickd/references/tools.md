@@ -131,7 +131,7 @@ Calls `GET /api/v1/check/product`.
 
 ### `mttr_agent_view`
 
-Reads one live page the way an agent does, the free "What an agent reads" tool: robots.txt asked first, so a page closed to mttr is not fetched; then its main content as Markdown with words and an estimated token count (about 4 characters a token), and what helped or hurt the reading, each with a state and, where the rulebook has one, its rule: main text found, text before script runs or a shell a script fills in, one h1, headings as an outline, the answer under the first question, structured data and its types, and how much of the page is its own text. Read by clickd's crawler; an assistant's own reader may differ.
+Reads one live page the way an agent does, the free "What an agent reads" tool: robots.txt asked first, so a page closed to clickd's crawler, mttr, is not fetched; then its main content as Markdown with words and an estimated token count (about 4 characters a token), and what helped or hurt the reading, each with a state and, where the rulebook has one, its rule: main text found, text before script runs or a shell a script fills in, one h1, headings as an outline, the answer under the first question, structured data and its types, and how much of the page is its own text. Read by clickd's crawler; an assistant's own reader may differ.
 
 ```
 mttr_agent_view()
@@ -162,7 +162,7 @@ Calls `GET /api/v1/make/schema`.
 
 ### `mttr_x_card`
 
-Tests one live link's X card, the free X card tester: robots.txt asked first, so a page closed to mttr is not fetched; then its twitter: tags against what X's archived card docs list (one twitter:card, the site, title, image and its size, and for a player card an https twitter:player with its width and height, and no twitter:player:stream), whether robots.txt keeps Twitterbot out, and for a player card the player route's own headers, read for whether frame-ancestors and X-Frame-Options let x.com, twitter.com and their subdomains frame it. Fetched as mttr, never as X's crawler: X may be served differently, so the reply carries the curl lines to fetch both as Twitterbot. X's player card policy reserves player cards for linear audio and video.
+Tests one live link's X card, the free X card tester: robots.txt asked first, so a page closed to clickd's crawler, mttr, is not fetched; then its twitter: tags against what X's archived card docs list (one twitter:card, the site, title, image and its size, and for a player card an https twitter:player with its width and height, and no twitter:player:stream), whether robots.txt keeps Twitterbot out, and for a player card the player route's own headers, read for whether frame-ancestors and X-Frame-Options let x.com, twitter.com and their subdomains frame it. Fetched as clickd, never as X's crawler: X may be served differently, so the reply carries the curl lines to fetch both as Twitterbot. X's player card policy reserves player cards for linear audio and video.
 
 ```
 mttr_x_card({ url: "https://example.com/products/linen-shirt" })
@@ -176,7 +176,7 @@ Calls `GET /api/v1/check/x-card`.
 
 ### `mttr_locations`
 
-Grades a brand's location pages together, the free multi-location grader: robots.txt asked first, so a site closed to mttr is not read; then its home page and sitemap, and up to 25 location pages, state and city listings followed down to the places and subpages every location has left out. Eight checks, each passing or not with what was found in words, the locations that fail it with why, and the fix: the brand tied to its locations in structured data, a LocalBusiness block with street and telephone on each, no two locations with the same title, heading, description or most of their words, a share card naming each location, hreflang both ways with an x-default, each location its own canonical, a locations page and the sitemap listing them all, and the address and telephone on the page matching the block. A score from 0 to 100 is the share of checks passed. It cannot say whether a business is really at an address.
+Grades a brand's location pages together, the free multi-location grader: robots.txt asked first, so a site closed to clickd's crawler, mttr, is not read; then its home page and sitemap, and up to 25 location pages, state and city listings followed down to the places and subpages every location has left out. Eight checks, each passing or not with what was found in words, the locations that fail it with why, and the fix: the brand tied to its locations in structured data, a LocalBusiness block with street and telephone on each, no two locations with the same title, heading, description or most of their words, a share card naming each location, hreflang both ways with an x-default, each location its own canonical, a locations page and the sitemap listing them all, and the address and telephone on the page matching the block. A score from 0 to 100 is the share of checks passed. It cannot say whether a business is really at an address.
 
 ```
 mttr_locations({ url: "https://example.com/products/linen-shirt" })

@@ -8,14 +8,14 @@ metadata:
 
 <!-- subinternal:header -->
 ```
-╭─────────────────────────────────────────────────────────────────╮
-│        ▄                                                        │
-│      ▄ █    clickd                                              │
-│    ▄ █ █    rank a page                                         │
-│  ▄ █ █ █                                                        │
-│                                                                 │
-│  skill 2.1.0 · by subinternal · clickd.com/skills/rank-a-page   │
-╰─────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────╮
+│        ▄                                                           │
+│      ▄ █    clickd                                                 │
+│    ▄ █ █    rank a page                                            │
+│  ▄ █ █ █                                                           │
+│                                                                    │
+│  skill 2.1.0  ·  by subinternal  ·  clickd.com/skills/rank-a-page  │
+╰────────────────────────────────────────────────────────────────────╯
 ```
 
 Print this header once, exactly as it is, in a code block, as the first thing you show when this skill starts. Then go on.
