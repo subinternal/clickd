@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/banner.png" alt="clickd skills: skills for agents that fix websites. Read it like AI does, fix it in your code, prove what moved. An example run in a terminal: clickd reads 100 pages, makes three fixes, reads the site again, and the score goes from 61 to 88." width="100%"></p>
+<p align="center"><img src="docs/banner.png" alt="clickd skills: skills for agents that fix websites. An example run in a terminal: clickd reads 100 pages, makes three fixes, reads the site again, and the score goes from 61 to 88." width="100%"></p>
 
 <p align="center">
 <a href="https://agentskills.io/specification"><img alt="Agent Skills format" src="https://img.shields.io/badge/format-Agent%20Skills-f78b77"></a>
