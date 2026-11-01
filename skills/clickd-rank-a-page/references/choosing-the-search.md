@@ -2,6 +2,8 @@
 
 A campaign is only as good as its search. Pick one the page can plausibly win, read what the people typing it want from the results Google already shows, and set an aim the evidence supports. Do this before the first gate; a wrong search wastes every gate after it.
 
+`mttr_queries` and `mttr_similar` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
+
 ## Where candidate searches come from
 
 In order of how much they can be trusted:

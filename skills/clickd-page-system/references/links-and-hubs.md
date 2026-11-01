@@ -110,6 +110,8 @@ Sitemap: https://example.com/sitemap.xml
 
 ## Check it
 
+`mttr_structure`, `mttr_map` and `mttr_links` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
+
 | What | How | Pass | Fail |
 |---|---|---|---|
 | Clicks from home | `mttr_structure({ site })`, or `mttr_map({ site, view: "links" })` | Every section within three clicks | A section at four or more, or pages no link leads to |

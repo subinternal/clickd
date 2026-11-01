@@ -19,7 +19,7 @@ To add: a fit guide, what waterproof means here, care, why buy here. Not copied 
 
 Read the rivals' pages to find the reader's questions, never to copy their order or words. Google's own test for helpful content asks whether a page gives "substantial value when compared to other pages in search results" ([Creating helpful, reliable, people-first content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)). A page that restates the top three adds nothing to them.
 
-With clickd, `mttr_gaps({ site })` lists the subjects rivals write about that nothing on the site comes close to, with the rival pages. `mttr_compare({ site, with: "<rival>", view: "content" })` sets the two sites' content side by side by meaning: subjects both write about, and what only one does. Close in meaning says similar, never better.
+With clickd, `mttr_gaps({ site })` lists the subjects rivals write about that nothing on the site comes close to, with the rival pages. It is listed at `https://clickd.com/mcp/all`, as are `mttr_examples` and `mttr_queries` below: connect that address in place of `https://clickd.com/mcp` to see them, and every tool name answers a call at either address. `mttr_rivals({ site, with: "<rival>", view: "content" })` sets the two sites' content side by side by meaning: subjects both write about, and what only one does. Close in meaning says similar, never better.
 
 ## Title, first heading, opening: before and after
 
@@ -82,12 +82,12 @@ Length is not the aim. Google says there is no preferred word count ([SEO Starte
 | An FAQ block written for search, not readers | Questions no customer asks, answers that repeat the title | Use the brief's questions. Any FAQ in structured data must be visible on the page (`faq-matches-page`). |
 | Ratings in structured data with no reviews shown | Stars in the markup, none on the page | Remove them or show the reviews (`ratings-are-real`). |
 | Changing the date to look fresh | A new date with no change in substance | Change the date only with a real change. Google's self-assessment names this as search-first. |
-| clickd reads the page as a plain page | `mttr_page` shows few content rules for it | clickd guesses a page's kind from its address and markup, and a plain page gets fewer rules. Passing them proves less; the brief's questions, checked by the person, carry the gate. Say so in the proof. |
+| clickd reads the page as a plain page | `mttr_pages({ site, path })` shows few content rules for it | clickd guesses a page's kind from its address and markup, and a plain page gets fewer rules. Passing them proves less; the brief's questions, checked by the person, carry the gate. Say so in the proof. |
 | The fix is on a template shared by many pages | The title or heading comes from a layout file | Change only this page, through its own data, unless the person agrees to change the template; then the campaign log says every page it touched. |
 
 ## Verifying gates two and three
 
-- **Gate two, with clickd:** after the rescan, `mttr_page({ site, path })` shows the title and first heading, and no `title` or `one-h1` finding. Then, after a few weeks, the page's searches in `mttr_queries({ site, page })` should be mostly of the campaign's intent. A search of another intent that still earns impressions is a note for another page, not a failure of this one, unless it is among the page's top searches.
+- **Gate two, with clickd:** after the rescan, `mttr_pages({ site, path })` shows the title and first heading, and no `title` or `one-h1` finding. Then, after a few weeks, the page's searches in `mttr_queries({ site, page })` should be mostly of the campaign's intent. A search of another intent that still earns impressions is a note for another page, not a failure of this one, unless it is among the page's top searches.
 - **Gate two, without clickd:** fetch the live page and read the `<title>` and `<h1>` in the HTML the server sends, not in the browser after script runs: `curl -sL https://<site>/<path> | grep -iE '<title>|<h1'`.
 - **Gate three:** the page passes the content rules clickd checks on it, and `mttr_gaps` lists fewer than two of the rivals' subjects whose nearest page here is this one. Without clickd, each line of the brief's "to add" is on the live page, and the person has read it and agrees.
 - **A pass** is a read, written in the log as the proof. **A fail** is written as `stuck` with the rule or the question still open, and the gate stays closed.

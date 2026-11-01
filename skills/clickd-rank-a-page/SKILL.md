@@ -3,7 +3,7 @@ name: clickd-rank-a-page
 description: Runs a campaign to move one page of a site up for one search, toward an aim set at the start (such as top 3), through five gates in order (clean up, one intent, substance, links inside, links from outside), each opened only by a proof from a read of the live site, and keeps a log, a weekly read-out and the campaign's time to rank. Use when asked to rank a page, get a page to page one, move up for a keyword, or run an SEO campaign on one page; or when a page ranks on page two for a search that matters. Works with clickd connected, which reads the site and checks each gate, or alone with a campaign.md kept in the repository. Not for buying links or promising a place.
 metadata:
   author: subinternal
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 <!-- subinternal:header -->
@@ -14,7 +14,7 @@ metadata:
 │    ▄ █ █    rank a page                                            │
 │  ▄ █ █ █                                                           │
 │                                                                    │
-│  skill 2.1.0  ·  by subinternal  ·  clickd.com/skills/rank-a-page  │
+│  skill 2.2.0  ·  by subinternal  ·  clickd.com/skills/rank-a-page  │
 ╰────────────────────────────────────────────────────────────────────╯
 ```
 
@@ -55,7 +55,7 @@ A campaign has one status at a time, always written as the word:
 1. Ask the person, once: the page (its path on the live site), the search it should rank for, in the words people type, the aim, and whether you may deploy or only open a pull request. Write all four at the top of the log ([tracking](references/tracking.md)).
 2. One page and one search. If the person names several searches, ask which one matters most; the others wait for their own campaign. Check the search fits the page: where candidates come from, reading the intent from the live results, and whether another page of the site is the better one are in [choosing the search](references/choosing-the-search.md).
 3. An aim the evidence supports. From place 40, top 3 is a long campaign; say so and offer top 10 first. Never raise or lower the aim later without the person, and never to make time to rank look better. Tell the person once that changes reach Google over days to weeks and no place or date is promised ([timelines and stopping](references/timelines-and-stopping.md)).
-4. Connect to clickd over MCP at `https://clickd.com/mcp` with the person's key (`mttr_signup` gives one). Without clickd, every gate below still works from the site's own files and a browser, and the log is kept by hand in `campaign.md`.
+4. Connect to clickd over MCP with the person's key (`mttr_signup` gives one). This skill works best connected at `https://clickd.com/mcp/all`, which lists every tool: `mttr_queries`, `mttr_links`, `mttr_gaps`, `mttr_examples` and `mttr_backlinks`, used below, are listed only there. Every tool name also answers a call at `https://clickd.com/mcp`, but most clients let an agent call only what an address lists. Without clickd, every gate below still works from the site's own files and a browser, and the log is kept by hand in `campaign.md`.
 5. Find the place it starts at. With clickd and a claimed site, call `mttr_queries({ site, page: "<the page's full address>" })` for the searches the page shows for and its average position for each. Without it, ask the person for Search Console's Performance report for that page and search, or write "place unknown" rather than guess. How to read it for one page and one search, and what its average means, is in [measuring with Search Console](references/search-console.md).
 6. Write the starting place, the date, the window, the impressions and the source in the log. The date is the campaign's start, where time to rank counts from. A place from a person's own search in a browser is personalized; say so if that is all there is.
 
@@ -65,7 +65,7 @@ The status moves from Setting up to Climbing. Then work the gates in order. Work
 
 Make the page and the paths to it work before anything else.
 
-- **Look at:** with clickd, `mttr_page({ site, path })` for the page's findings, and `mttr_links({ site, show: "broken" })` for broken links on the site. Without clickd, load the page, follow every link on it, and check its status and its canonical in the HTML.
+- **Look at:** with clickd, `mttr_pages({ site, path })` for the page's findings, and `mttr_links({ site, show: "broken" })` for broken links on the site. Without clickd, load the page, follow every link on it, and check its status and its canonical in the HTML.
 - **Decide:** fix anything on this page first, then anything that leads to it: links to it that redirect or break, copies of it at other addresses (with and without a trailing slash, with filters or tracking in the address), and a canonical that points elsewhere.
 - **Change:** one address for the page, every internal link pointing straight at it, a canonical to itself, and a 200 for the page with its words in the HTML before any script.
 - **Opens when:** clickd's next read fails no access rule on the page and finds no broken link or duplicate touching it. Without clickd: the page answers 200 at one address, its canonical is itself, and no link to it on the site redirects. Where the person has Search Console, the URL Inspection tool's Google-selected canonical is the page's own address too ([measuring with Search Console](references/search-console.md)).
@@ -83,7 +83,7 @@ A page ranks for what it is plainly about. Make it about one thing: the search.
 
 Give the page what the pages above it give a reader, and what only this site can.
 
-- **Look at:** the three pages that rank above it for the search. With clickd, `mttr_competitors({ site })` and `mttr_gaps({ site })` show sites near it and the subjects they cover that it does not. Read the rivals' pages yourself: what questions do they answer, how deep, with what proof?
+- **Look at:** the three pages that rank above it for the search. With clickd, `mttr_rivals({ site })` and `mttr_gaps({ site })` show sites near it and the subjects they cover that it does not. Read the rivals' pages yourself: what questions do they answer, how deep, with what proof?
 - **Decide:** write a short brief before changing anything ([what the page must answer](references/the-page.md) has its shape and a worked one): the questions a reader of this search has, which the page answers, which it misses, and what the site knows that the rivals do not (its own products, prices, places, people, results). Do not copy a rival's structure or words.
 - **Change:** add what is missing in the site's own voice: answers under headings that are the reader's questions, the real details (sizes, prices, steps, places), why to choose this site, and proof a reader can check. Keep it as long as it needs to be and no longer. See [helpful, people-first content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content).
 - **Opens when:** the page passes the content rules clickd checks on it (for any it fails, `mttr_examples({ site, path, rule })` shows passages that pass it, to write from), and covers the subjects the rivals cover, or has fewer than two left. Without clickd: the brief's questions each have an answer on the page, checked by the person.
@@ -110,7 +110,7 @@ Earn links from sites that would point a reader here anyway.
 
 After each change ships:
 
-1. With clickd, log it with `mttr_log_work({ site, step: "changed", did })`, then `mttr_rescan({ site, reason })` and, once the read is done, `mttr_changes({ site })` for what it moved. A read that opens the gate is logged with `step: "checked"` and its proof. A read that does not is logged with `step: "stuck"` and why, and the gate stays closed.
+1. With clickd, log it with `mttr_log_work({ site, step: "changed", did })`, then `mttr_rescan({ site, reason })`, then `mttr_changes({ site, job })` with the job it returned, every minute or two, until it says done; the same reply then says what the read moved. A read that opens the gate is logged with `step: "checked"` and its proof. A read that does not is logged with `step: "stuck"` and why, and the gate stays closed.
 2. Without clickd, write the change in `campaign.md` with the date and the address, and what the person checked.
 3. Never open a gate yourself. A read opens it, or the person does, and the log says which.
 4. At each read, check the open gates too. One that fails again has slipped: close it, say so in the log, and go back to it.

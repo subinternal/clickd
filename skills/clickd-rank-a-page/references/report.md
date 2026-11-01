@@ -2,6 +2,8 @@
 
 Once a week, write the person a short read-out, the same shape every week, even when nothing moved. Add it to the top of the Read-outs part of `campaign.md`, and say it in the conversation.
 
+`mttr_queries` is listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see it. Every tool name answers a call at either address.
+
 ## What it holds
 
 1. **The place now against the aim and the start,** with the source, the dates it covers and the impressions behind it. With clickd connected and the site claimed, from `mttr_queries({ site, page })`. Without it, from the person's Search Console, read as [measuring with Search Console](search-console.md) says. If neither is there, say the place is unknown this week; an unknown week never stops the clock.

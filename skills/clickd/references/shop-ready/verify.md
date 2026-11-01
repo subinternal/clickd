@@ -25,7 +25,7 @@ Locally, run the same against the preview or the address the dev command prints 
 
 ## Read the check's answer
 
-`mttr_product_check({ url })` answers, for one live page:
+`mttr_check({ kind: "product", url })` answers, for one live page:
 
 - `verdict`: `good` (every field checked is in place), `warn` (required fields in place, some recommended missing, or Product data only as microdata), or `bad` (a required field missing or wrong), with a sentence that names them.
 - `required` and `recommended`: the fields still to fix. Count these for the report's before and after.

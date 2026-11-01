@@ -3,7 +3,7 @@ name: clickd-page-system
 description: Builds a site's page templates and shared components so search engines and AI assistants read every page well, and proves each pattern with clickd. Covers one h1 and a real outline, landmarks, an answer-first opening, structured data for each kind of page, share tags, canonical and indexing, internal links and hubs, images, speed and contrast, spacing on one scale with an even rhythm, and moving an existing site onto it a template at a time. Use when building or reworking a site's layout, page templates, components or design system, adding a new kind of page, or when clickd findings point at a shared template. About the structure of pages and their spacing, not their color, type or brand.
 metadata:
   author: subinternal
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 <!-- subinternal:header -->
@@ -14,7 +14,7 @@ metadata:
 │    ▄ █ █    page system                                            │
 │  ▄ █ █ █                                                           │
 │                                                                    │
-│  skill 2.1.0  ·  by subinternal  ·  clickd.com/skills/page-system  │
+│  skill 2.2.0  ·  by subinternal  ·  clickd.com/skills/page-system  │
 ╰────────────────────────────────────────────────────────────────────╯
 ```
 
@@ -122,7 +122,7 @@ Make the site a tree a crawler can walk: home, then hubs, then the pages under t
 
 Hub and spoke, paged lists, town pages and the sitemap, worked, are in [references/links-and-hubs.md](references/links-and-hubs.md).
 
-Check: `mttr_structure({ site })` shows every section within three clicks; `mttr_pages({ site, failing: "linked-in-context" })` is empty.
+Check: `mttr_structure({ site })` shows every section within three clicks (it is listed at `https://clickd.com/mcp/all`: connect that address in place of /mcp to see it; every tool name answers at either address); `mttr_pages({ site, failing: "linked-in-context" })` is empty.
 
 ## 6. Build the parts that carry weight
 
@@ -169,7 +169,7 @@ Ship as the person allows, then check each pattern on a live page of each templa
 
 `answers-the-question` and `claims-supported` are read by clickd's model judge, which gives an opinion a person may need to check; the rest are read by code. `mttr_rules()`, or `https://clickd.com/rulebook` with no key, gives each rule's current wording and fix. Read it there rather than from this file.
 
-Over MCP, once the change is live: `mttr_rescan({ site, reason: "page templates" })`, `mttr_job({ id })` until done, then `mttr_changes({ site })` against the baseline. `mttr_pages({ site, failing: "<rule>" })` lists any page a rule still fails, which usually points at a template step 1 missed. A rule that still fails after the fix is worked through by symptom in [references/troubleshooting.md](references/troubleshooting.md).
+Over MCP, once the change is live: `mttr_rescan({ site, reason: "page templates" })`, then `mttr_changes({ site, job })` with the job it returns, every minute or two until it says done; the same reply then carries the changes against the baseline. `mttr_pages({ site, failing: "<rule>" })` lists any page a rule still fails, which usually points at a template step 1 missed. A rule that still fails after the fix is worked through by symptom in [references/troubleshooting.md](references/troubleshooting.md).
 
 ## Report back
 

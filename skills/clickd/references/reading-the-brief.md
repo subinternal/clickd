@@ -28,11 +28,11 @@ Fixes are ordered by the rule's weight times the share of pages failing it. That
 - **A blocker anywhere goes first**, even if it sits low in the list because it touches few pages. `loads`, `indexable` and `robots-open` are blockers.
 - **One template behind several fixes.** If fixes 2, 5 and 7 all live in the article template (`dated`, `named-publisher`, `breadcrumb`), one change to that template answers all three. Group them, but still ship them as one rule a change where the person needs to judge each.
 - **A fix that needs the person's facts.** `sources-shown`, `depth` and `next-step` can need facts only the person has: real sources, real detail, a real contact route. Ask, and move on to the next fix while you wait. Never fill the gap with invented content.
-- **A queued task.** On a claimed site, anything in `mttr_queue()` comes before the brief.
+- **A queued task.** On a claimed site, anything in `mttr_todo({ show: "queue" })` comes before the brief.
 
 ## The plan, beside the brief
 
-`mttr_plan({ site })` gives the four fixes worth the most as steps, each with its worth in points, what to do, and a few of its pages, then the words to hand another agent. Use it when:
+`mttr_brief({ site, format: "steps" })` gives the four fixes worth the most as steps, each with its worth in points, what to do, and a few of its pages, then the words to hand another agent. Use it when:
 
 - you hand part of the work to a second agent: pass it the plan's words, not your own summary;
 - the person wants to know what the next hour is worth: each step says its points.

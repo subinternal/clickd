@@ -10,11 +10,11 @@ A read of a change that is not live measures nothing. First confirm the deploy r
 curl -sL -A "mttr/0.1" https://example.com/guides/gravel | grep -io '<link[^>]*canonical[^>]*>'
 ```
 
-If the old markup comes back, the deploy is not live or a cache still holds the old page. Wait, or ask the person about purging. Then `mttr_rescan({ site, reason })`, with what changed in a few words, and `mttr_job({ id })` until it says done. A site is read at most once every ten minutes.
+If the old markup comes back, the deploy is not live or a cache still holds the old page. Wait, or ask the person about purging. Then `mttr_rescan({ site, reason })`, with what changed in a few words, then `mttr_changes({ site, job })` with the job id it returned, every minute or two, until it says done. A site is read at most once every ten minutes.
 
 ## What `mttr_changes` answers
 
-`mttr_changes({ site })` sets the latest read against the one before it. Under `changes`:
+`mttr_changes({ site, job })` answers `job.state` (`waiting`, `running` or `failed`) and `changes` null until the read is done. Once it is done, the same reply sets the latest read against the one before it. `mttr_changes({ site })` with no job compares the two latest reads. Under `changes`:
 
 | Field | What it says |
 |---|---|
@@ -46,18 +46,18 @@ If the old markup comes back, the deploy is not live or a cache still holds the 
 | `loads` or `direct-links` broke | A changed address with no redirect, or links still pointing to an old one | Redirect the old address once, and point links at the new one |
 | `one-h1` or `title` broke on every page | A shared layout changed | Find the layout change in the diff |
 | `pages.added` is high and several rules moved up | New pages the read had not seen, often from a new section | Compare the failing pages with `added`; the new template may need the same fixes |
-| Rules moved with no change from you | Someone else changed the site, or `rulebookChanged` | Check the flags, then `mttr_page` on one page |
+| Rules moved with no change from you | Someone else changed the site, or `rulebookChanged` | Check the flags, then `mttr_pages({ site, path })` on one page |
 
 ## When a fix does not show
 
-If a rule you fixed still fails, open the page with `mttr_page({ site, path })` before you change anything else:
+If a rule you fixed still fails, open the page with `mttr_pages({ site, path })` before you change anything else:
 
 - **The page still fails in what the server sends.** The deploy or a cache is the cause. Fetch it with `curl` as above.
 - **The page passes, others fail.** The fix reached one template and not another. Find what the failing pages share.
 - **The page is not in the read.** A read takes the first 100 pages; a page past them is not checked. `mttr_pages({ site, q: "<path>" })` says whether it was read.
 - **The rule passes on the page, and `fixed` still does not list it.** `fixed` lists only rules no page fails. If one page still fails, the rule sits in `moved`.
 
-A fix counts as done only once a later read finds it passing. On a claimed site, `mttr_todo()` shows what a read has checked fixed and what slipped back, and `mttr_queue_done({ id })` marks a queued task finished.
+A fix counts as done only once a later read finds it passing. On a claimed site, `mttr_todo()` shows what a read has checked fixed and what slipped back, and `mttr_log_work({ site, step, did, task })` with a queued task's id marks it finished, with your note.
 
 ## Reporting it
 

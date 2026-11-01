@@ -3,9 +3,9 @@
 The fix is in place and clickd still reports the rule. Most often the change did not reach the HTML the server sends, or reached one template and not another. Start every case the same way:
 
 1. Is the change live? `curl -s https://<page> | grep -c '<the thing you added>'`. Zero means it is not deployed, is cached, or is added by script after load.
-2. Was the site read after it went live? `mttr_rescan({ site, reason })`, then `mttr_job({ id })` until done. A site is read at most once every ten minutes.
+2. Was the site read after it went live? `mttr_rescan({ site, reason })`, then `mttr_changes({ site, job })` with the job it returns, every minute or two until it says done. A site is read at most once every ten minutes.
 3. Which pages still fail? `mttr_pages({ site, failing: "<rule>" })`. If they share a template, the fix missed that template; if they share a CMS field, the field is empty.
-4. What does the page itself say? `mttr_page({ site, path })` gives the rule's finding in words, such as "2 h1 headings" or "Canonical points to /services".
+4. What does the page itself say? `mttr_pages({ site, path })` gives the rule's finding in words, such as "2 h1 headings" or "Canonical points to /services".
 
 ## By rule
 

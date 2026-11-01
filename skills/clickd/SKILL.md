@@ -3,7 +3,7 @@ name: clickd
 description: Checks a website with clickd the way search engines and AI assistants read it, then works its fix list in order of worth. Connects over MCP, reads the brief, fixes the cause in the site's own code, proposes each change or ships it as the person allows, then reads the site again and compares. Use when asked to audit, check, improve or gate a site's SEO, GEO, AI visibility or AI citations, to check a page before it ships, or to run a weekly check on a site. Also use in an online shop's repository (Shopify, Hydrogen, Next.js commerce, WooCommerce, BigCommerce or Magento) when asked to fix product pages, product schema or product JSON-LD; price, availability, shipping, returns, brand, GTIN or variants in structured data; or to get product pages ready for Google Shopping, Merchant Center, merchant listings, Universal Cart or shopping agents. Works without a key from clickd's free public tools and reports. Not for paid ads or the Merchant Center feed and account, and never a promise of rankings or citations.
 metadata:
   author: subinternal
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 <!-- subinternal:header -->
@@ -14,7 +14,7 @@ metadata:
 │    ▄ █ █    check and fix a site                              │
 │  ▄ █ █ █                                                      │
 │                                                               │
-│  skill 2.1.0  ·  by subinternal  ·  clickd.com/skills/clickd  │
+│  skill 2.2.0  ·  by subinternal  ·  clickd.com/skills/clickd  │
 ╰───────────────────────────────────────────────────────────────╯
 ```
 
@@ -40,7 +40,7 @@ claude mcp add --transport http clickd https://clickd.com/mcp --header "Authoriz
 
    Other clients are set up at `https://clickd.com/agents`. With no key yet, and with the person's leave, call `mttr_signup({ email })`: it answers their key, shown once. The key is theirs. Never write it into the repository, a commit or a log. If a call answers that clickd needs a key, or any other refusal, [references/troubleshooting.md](references/troubleshooting.md) has the check to run and each message with its cause and fix.
 3. With no MCP at all, use the open path in the table below, and say in your report that you did.
-4. Over MCP, call `mttr_proposals({ site })` for a site the person has claimed. It says whether the site is set to `approve` or `automatic`. If the site is not claimed, offer `mttr_claim({ site })`, which gives a DNS record or a file that proves the site is theirs, then `mttr_claim_check({ site })`.
+4. Over MCP, call `mttr_proposals({ site })` for a site the person has claimed. It says whether the site is set to `approve` or `automatic`. If the site is not claimed, offer `mttr_claim({ site })`, which gives a DNS record or a file that proves the site is theirs, then `mttr_claim({ site, step: "check" })`.
 5. Decide now how changes will ship, and do not revisit it:
 
 | What you know | How it ships in step 5 |
@@ -67,7 +67,9 @@ The checks share a free allowance of 200 an hour from one address, and new reads
 
 ### What a key reaches
 
-Any key reads the public parts of any site clickd has a public report of: `mttr_site`, `mttr_brief`, `mttr_plan`, `mttr_pages`, `mttr_page`, `mttr_changes`, `mttr_links`, `mttr_structure`, `mttr_topics`, `mttr_map` and `mttr_tells`, and may ask for a read with `mttr_rescan`. A site the person has claimed adds its Search Console figures, visits, citations, rivals, worked examples, the work board in `mttr_todo` and approval by email. [references/tools.md](references/tools.md) marks each tool.
+Any key reads the public parts of any site clickd has a public report of with `mttr_site`, `mttr_brief`, `mttr_pages` and `mttr_changes`, and may ask for a read with `mttr_rescan`. It also reaches `mttr_rules`, `mttr_leaderboard`, the free checks in `mttr_check` and `mttr_schema_create`. A site the person has claimed adds its citations in `mttr_citations`, its rivals in `mttr_rivals`, the work board in `mttr_todo` and approval by email. These are the 17 tools listed at `https://clickd.com/mcp`.
+
+The deeper tools, such as a site's links, map, structure, topics and signs of generated text, and on a claimed site its Search Console figures, visits and worked examples, are listed at `https://clickd.com/mcp/all`. Connect that address in place of `/mcp` to see them; every tool name answers at either address. [references/tools.md](references/tools.md) marks each tool.
 
 ## 1. Read the site as clickd last read it
 
@@ -77,13 +79,13 @@ Call `mttr_site({ site })` and note the score, the four stages (access, understa
 mttr_site({ site: "example.com" })
 ```
 
-If it answers that clickd has no public report yet, call `mttr_rescan({ site, reason: "first read" })`, then `mttr_job({ id })` every minute or two until it is done. A site is read at most once every ten minutes, and a read takes the first 100 pages. A read that stopped at its page limit cannot say which pages nothing links to: never claim more than was read.
+If it answers that clickd has no public report yet, call `mttr_rescan({ site, reason: "first read" })`, then `mttr_changes({ site, job })` every minute or two with the job id it returned, until it says done. A site is read at most once every ten minutes, and a read takes the first 100 pages. A read that stopped at its page limit cannot say which pages nothing links to: never claim more than was read.
 
 ## 2. Read the brief and the plan
 
 Call `mttr_brief({ site })`. It is the fix list as Markdown, in order of worth: what to fix, how, why and on which pages.
 
-On a claimed site, call `mttr_queue()` first for tasks the person queued for you, then `mttr_todo()` for the next fix and what slipped back. Work queued tasks before anything else. `mttr_plan({ site })` gives the same fixes as a short ordered plan, with the words to hand another agent.
+On a claimed site, call `mttr_todo({ show: "queue" })` first for tasks the person queued for you, then `mttr_todo()` for the next fix and what slipped back. Work queued tasks before anything else. `mttr_brief({ site, format: "steps" })` gives the same fixes as a short ordered plan, with the words to hand another agent.
 
 Before step 3, read the brief's opening lines: a read that stopped at its page limit, a draft read, or a site closed to crawlers each change what you may claim and what comes first. Then write down the fixes you will work, each with the template you expect behind it. [references/reading-the-brief.md](references/reading-the-brief.md) says what each part of the brief means, when to depart from its order, and the mistakes that cost time.
 
@@ -93,7 +95,7 @@ Before you change anything for a rule, open one page it names and see the failur
 
 ```
 mttr_pages({ site: "example.com", failing: "answer-first" })
-mttr_page({ site: "example.com", path: "/guides/gravel" })
+mttr_pages({ site: "example.com", path: "/guides/gravel" })
 ```
 
 `mttr_rules()`, or `https://clickd.com/rulebook` with no key, gives every rule's current wording, stage, weight and fix. Read the rule there; do not restate it from memory. A rule can be wrong about an unusual page. If it is, say so in your report rather than bending the page to pass.
@@ -108,7 +110,7 @@ Change the site's own code, one rule at a time, starting at the top of the brief
 
 - A blocker comes first. A site that cannot be crawled or indexed cannot rank, whatever else it fixes.
 - Fix the cause, not the page. Most findings come from a shared template or component, so one change clears many pages. Find it before you edit.
-- On a claimed site, `mttr_examples({ site, path, rule })` shows pages on similar sites that pass the same rule, as worked examples to write from.
+- On a claimed site, `mttr_examples({ site, path, rule })` shows pages on similar sites that pass the same rule, as worked examples to write from. It is listed at `https://clickd.com/mcp/all`, not at `/mcp`.
 - Keep each change small enough for the person to judge in one read: one rule, its template, the pages it touches.
 - Never invent a source, a review, a rating, a figure, a date or a credential to pass a rule. A rule that cannot be passed honestly stays failed and is reported.
 - Never open a site that is closed to crawlers on purpose, such as a draft, to raise its score. Going live is the person's call.
@@ -122,30 +124,30 @@ When an assistant names a business, it lifts the same handful of facts: the name
 
 ### A shop's product pages
 
-When the site is a shop, or the work is product pages, read [references/shop-ready.md](references/shop-ready.md). It fixes the Product structured data in the shop's own templates so each page states what it shows, in the fields Google lists for merchant listings, and checks each live page with `mttr_product_check` before and after.
+When the site is a shop, or the work is product pages, read [references/shop-ready.md](references/shop-ready.md). It fixes the Product structured data in the shop's own templates so each page states what it shows, in the fields Google lists for merchant listings, and checks each live page with `mttr_check({ kind: "product", url })` before and after.
 
 ## 5. Ship as the person allows
 
 Ship each change only by the path decided before you started.
 
-- `approve`: call `mttr_propose({ site, title, summary, rule, pages, diff })`. clickd emails the person what the change is with an Approve and a Decline link. Poll `mttr_proposal({ id })` every few minutes. Deploy only once it says approved. Declined or expired means do not deploy. Name the proposal in `mttr_log_work`.
+- `approve`: call `mttr_propose({ site, title, summary, rule, pages, diff })`. clickd emails the person what the change is with an Approve and a Decline link. Poll `mttr_proposals({ id })` every few minutes. Deploy only once it says approved. Declined or expired means do not deploy. Name the proposal in `mttr_log_work`.
 - `automatic`, with leave to deploy: deploy.
 - Every other case: open a pull request with the diff, the rules it answers, the pages it touches and the score from step 1, and stop. Step 6 waits until the person has merged and deployed it.
 
-Never deploy to production on your own judgment. clickd cannot stop a deploy: approval is a promise you keep. Deploy exactly what was approved; if the change grows, propose again. Never change a site's mode with `mttr_approvals_set` unless the person asks. [references/shipping.md](references/shipping.md) has a worked proposal, what each answer means, the limits, and what a pull request should carry.
+Never deploy to production on your own judgment. clickd cannot stop a deploy: approval is a promise you keep. Deploy exactly what was approved; if the change grows, propose again. Never change a site's mode yourself: the person sets each site to approve or automatic on their account page, `https://clickd.com/account`. [references/shipping.md](references/shipping.md) has a worked proposal, what each answer means, the limits, and what a pull request should carry.
 
 ## 6. Read again and compare
 
 Once the change is live, ask for a fresh read and compare it with the one before.
 
 1. Call `mttr_rescan({ site, reason })` with what changed, in a few words.
-2. Watch `mttr_job({ id })` until it is done.
-3. Call `mttr_changes({ site })`: the score, rules now passing, rules newly failing, and pages added and removed.
-4. On a claimed site, call `mttr_queue_done({ id })` for each queued task you finished. A fix counts as done only once a later read finds it passing.
+2. Call `mttr_changes({ site, job })` with the job id it returned, every minute or two. Until the read is done it answers the job's state and no changes.
+3. Once it says done, the same reply carries the changes: the score, rules now passing, rules newly failing, and pages added and removed.
+4. On a claimed site, call `mttr_log_work({ site, step, did, task })` with the id of each queued task you finished: the task is marked done with the note. A fix counts as done only once a later read finds it passing.
 
 Before you ask for the read, fetch one changed page with `curl` and see the change in it: a read of a deploy that is not live, or of a page a cache still holds, measures nothing. In `mttr_changes`, read `rulebookChanged`, `draftChanged` and `partial` before any result, then rules newly failing, then rules fixed. A rule can newly fail because a fix made it apply, as when Article schema makes a page an article.
 
-If a rule you fixed still fails, open the page again with `mttr_page` before you change anything else. If the rescan is refused because the site was read in the last ten minutes, say so and check again later. [references/after-a-rescan.md](references/after-a-rescan.md) has every field of `mttr_changes`, why a rule breaks, and what to do when a fix does not show.
+If a rule you fixed still fails, open the page again with `mttr_pages({ site, path })` before you change anything else. If the rescan is refused because the site was read in the last ten minutes, say so and check again later. [references/after-a-rescan.md](references/after-a-rescan.md) has every field of `mttr_changes`, why a rule breaks, and what to do when a fix does not show.
 
 ## Report back
 

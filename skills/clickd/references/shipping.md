@@ -11,7 +11,7 @@ Step 5 of `SKILL.md` ships each change only by the path chosen before you starte
 | Claimed, set to `automatic` | Nothing about deploying | Open a pull request and stop |
 | Not claimed, or no MCP | Anything | Open a pull request and stop |
 
-`mttr_proposals({ site })` says which mode a site is set to. Read it before you start, and do not change it yourself. `mttr_approvals_set` is the person's choice: turning approve off is emailed to them, and you should call it only when they ask you to in so many words.
+`mttr_proposals({ site })` says which mode a site is set to. Read it before you start, and do not change it yourself. The mode is the person's choice: they set each site to approve or automatic on their account page, `https://clickd.com/account`, and turning approve off is emailed to them. Never turn approval off for them.
 
 ## A proposal the person can judge
 
@@ -42,7 +42,7 @@ Keep the diff to the change itself. A diff over 20,000 characters is usually mor
 
 ## Waiting for the answer
 
-`mttr_proposal({ id })` answers `state` and `deploy`, with a sentence under `says`:
+`mttr_proposals({ id })` answers `state` and `deploy`, with a sentence under `says`:
 
 | `state` | `deploy` | What you do |
 |---|---|---|

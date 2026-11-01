@@ -2,6 +2,8 @@
 
 The campaign's place comes from Google's own figures, never from a search the agent or the person runs and reads by eye. Search Console's Performance report is that record. This is how to read it for one page and one search, what its figures mean, and what to write in the log.
 
+`mttr_queries` and `mttr_traffic` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
+
 ## With clickd
 
 clickd has Search Console figures only for sites whose owner added clickd in Search Console, and gives them only for a site the person has claimed.

@@ -4,7 +4,7 @@ Step 3 of `SKILL.md` says to see each failure for yourself. This file says how: 
 
 ## The three looks
 
-1. **What clickd recorded.** `mttr_page({ site, path })` lists the rules the page fails, with the fix for each and what was found.
+1. **What clickd recorded.** `mttr_pages({ site, path })` lists the rules the page fails, with the fix for each and what was found.
 2. **What the server sends now.** clickd reads the HTML the server sends, before any script runs. Fetch the same:
 
 ```
@@ -13,7 +13,7 @@ curl -sIL -A "mttr/0.1" https://example.com/guides/gravel
 ```
 
    The first saves the page; the second shows each hop's status and headers. A page that changed since the read may already pass: if so, the fix is a fresh read, not a code change.
-3. **What an agent reads.** `mttr_agent_view({ url })` gives the page's main text as Markdown and what helped or hurt reading it, with the rule for each where the rulebook has one. Use it when the finding is about text: `content-in-html`, `depth`, `answer-first`, `one-h1`.
+3. **What an agent reads.** `mttr_check({ kind: "agent", url })` gives the page's main text as Markdown and what helped or hurt reading it, with the rule for each where the rulebook has one. Use it when the finding is about text: `content-in-html`, `depth`, `answer-first`, `one-h1`.
 
 Only change code once the first two agree that the page fails. On a site the person has in Search Console, they can also run the URL Inspection tool's live test, which fetches the page as Google does now rather than as Google last indexed it.
 
@@ -30,7 +30,7 @@ Run these against the saved `page.html` and the headers. Each line is what the r
 | `title` | Title under 15 or over 65 characters, not counting a site name most titles share | The `<title>` text |
 | `description` | Meta description missing, or under 70 or over 165 characters | The `description` meta tag |
 | `structured-data` | No JSON-LD, or a block that does not parse | Paste each `application/ld+json` block into a JSON parser |
-| `content-in-html` | Fewer than 120 words of the page's own text before scripts run | `mttr_agent_view({ url })` word count |
+| `content-in-html` | Fewer than 120 words of the page's own text before scripts run | `mttr_check({ kind: "agent", url })` word count |
 | `answer-first` | On an article, the paragraph right under the first question heading is under 25 or over 90 words | Count the words of that one paragraph |
 | `image-alt` | A content image has no alt text and is not marked decorative | `img` tags inside the main content |
 | `dated` | An article has no `dateModified` in its schema and no `time` with `datetime` | Both, in `page.html` |
@@ -59,7 +59,7 @@ grep -rn 'noindex' --exclude-dir=node_modules --exclude-dir=dist .
 
 ### A canonical hard-coded to the home page
 
-The brief says `canonical` fails on 41 pages, and `mttr_page` on `/guides/gravel` says "Canonical points to /".
+The brief says `canonical` fails on 41 pages, and `mttr_pages({ site, path })` on `/guides/gravel` says "Canonical points to /".
 
 Before, in the shared head:
 

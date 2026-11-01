@@ -6,15 +6,15 @@ Each loop is the six steps of `SKILL.md` cut to one job. The calls are clickd's 
 
 For a site clickd has not read, or one the person has just handed you.
 
-1. `mttr_site({ site: "example.com" })`. If clickd has no public report yet, `mttr_rescan({ site: "example.com", reason: "first read" })`, then `mttr_job({ id })` every minute or two until it says done.
+1. `mttr_site({ site: "example.com" })`. If clickd has no public report yet, `mttr_rescan({ site: "example.com", reason: "first read" })`, then `mttr_changes({ site: "example.com", job })` with the job id it returned, every minute or two, until it says done.
 2. `mttr_brief({ site: "example.com" })`. Read it top to bottom before you change anything. Note each blocker.
-3. For the top fix, `mttr_pages({ site: "example.com", failing: "<rule>" })`, then `mttr_page({ site: "example.com", path })` on one of them. Find the template that makes those pages.
+3. For the top fix, `mttr_pages({ site: "example.com", failing: "<rule>" })`, then `mttr_pages({ site: "example.com", path })` on one of them. Find the template that makes those pages.
 4. Fix that template. `mttr_log_work({ site: "example.com", step: "changed", did, files, rules })`.
-5. Ship as the person allows. On a site set to approve, `mttr_propose` and wait for `mttr_proposal` to say approved.
-6. Once it is live, `mttr_rescan`, `mttr_job`, then `mttr_changes({ site: "example.com" })`. The rule is fixed when the read finds it passing.
+5. Ship as the person allows. On a site set to approve, `mttr_propose` and wait for `mttr_proposals({ id })` to say approved.
+6. Once it is live, `mttr_rescan`, then `mttr_changes({ site: "example.com", job })` until it says done and carries the changes. The rule is fixed when the read finds it passing.
 7. Go on to the next fix in the brief. Stop when the person's time or leave runs out, and report.
 
-On a claimed site, open with `mttr_queue()` and `mttr_todo()` instead of step 2: the person may already have chosen what comes first.
+On a claimed site, open with `mttr_todo({ show: "queue" })` and `mttr_todo()` instead of step 2: the person may already have chosen what comes first.
 
 ## One page, before or after it ships
 
@@ -25,9 +25,9 @@ For a page you are writing or changing. clickd reads whole sites, so a page not 
    - `https://clickd.com/schema-checker?url=<page>`: every structured data block, and whether it parses.
    - `https://clickd.com/og-image-checker?url=<page>`: the share tags and the size of the share image.
    - `https://clickd.com/redirect-checker?url=<page>`: every hop to the final address.
-   - On a product page, `mttr_product_check({ url })`, or `https://clickd.com/tools/schema-markup-checker.json?url=<page>` with no key.
-2. Once it is live, `mttr_rescan({ site, reason: "new page <path>" })`, `mttr_job({ id })`, then `mttr_page({ site, path })`: every rule the page fails, with the fix for each, and the pages that link to it.
-3. If no page links to it, link it from the text of a related page and from its hub. `mttr_page` lists its links in.
+   - On a product page, `mttr_check({ kind: "product", url })`, or `https://clickd.com/tools/schema-markup-checker.json?url=<page>` with no key.
+2. Once it is live, `mttr_rescan({ site, reason: "new page <path>" })`, `mttr_changes({ site, job })` until it says done, then `mttr_pages({ site, path })`: every rule the page fails, with the fix for each, and the pages that link to it.
+3. If no page links to it, link it from the text of a related page and from its hub. `mttr_pages({ site, path })` lists its links in.
 
 The free tools read public addresses only. A preview behind a password or on a private network cannot be checked, and a local address is refused.
 
@@ -39,16 +39,16 @@ For a change that touches templates, layouts or many pages.
 2. Make the change. On a preview deploy with a public address, run the one page checks above on one page of each template it touches.
 3. In the pull request, write what it should fix by rule id, which templates it touches, the preview pages checked and what each check said, and the baseline score.
 4. On a site set to approve, `mttr_propose({ site, title, summary, rule, pages, diff })` with the same, and say in the pull request that it waits for approval.
-5. After the merge and deploy, `mttr_rescan`, `mttr_job`, `mttr_changes`, and add the result to the pull request. If a rule newly fails, say so first.
+5. After the merge and deploy, `mttr_rescan`, then `mttr_changes({ site, job })` until it says done, and add the result to the pull request. If a rule newly fails, say so first.
 
 ## A weekly check
 
 For a site already worked on, so a fix that slipped back is caught.
 
-1. `mttr_rescan({ site, reason: "weekly check" })`, then `mttr_job({ id })` until done.
-2. `mttr_changes({ site })`. Read rules newly failing first: each is a regression, usually from a new page or a changed template.
+1. `mttr_rescan({ site, reason: "weekly check" })`, then `mttr_changes({ site, job })` with the job id it returned, until it says done.
+2. Read the changes in that reply. Read rules newly failing first: each is a regression, usually from a new page or a changed template.
 3. On a claimed site, `mttr_todo()`: what slipped back, and sites changed since their last read.
-4. On a claimed site with clickd added in Search Console, `mttr_traffic({ site })` and `mttr_queries({ site, show: "near" })`: pages losing clicks, and searches close to the top. On a site whose server sends its own counts, `mttr_visits({ site })`: AI crawler fetches and people an assistant sent. A crawler fetching a page is not a citation.
+4. On a claimed site with clickd added in Search Console, `mttr_traffic({ site })` and `mttr_queries({ site, show: "near" })`: pages losing clicks, and searches close to the top. On a site whose server sends its own counts, `mttr_visits({ site })`: AI crawler fetches and people an assistant sent. A crawler fetching a page is not a citation. These three are listed at `https://clickd.com/mcp/all`, not at `/mcp`: connect that address in place of `/mcp` to see them; every tool name answers at either address.
 5. Report what moved and what to do next. Do not change anything in a weekly check unless the person asked you to.
 
 ## With no key at all
@@ -72,7 +72,7 @@ For a brief that opens with "The site is closed to crawlers", or a score of 20 o
 
 For a brief where `content-in-html` or `depth` fails on most pages, and a browser shows plenty of text.
 
-1. `mttr_agent_view({ url })` on one failing page. Few words means the server sends a shell and script fills it in.
+1. `mttr_check({ kind: "agent", url })` on one failing page. Few words means the server sends a shell and script fills it in.
 2. Confirm with `curl -sL` on the page: the text a person sees is missing from what comes back.
 3. The fix is in how the site renders: render the page's text on the server or at build time. Which setting does that depends on the framework; find it in the site's own config and say what you found before changing it.
 4. Read again. Once the text is in the HTML, rules that read it, such as `depth`, `question-headings` and `answer-first`, are judged on the real text.
@@ -84,11 +84,11 @@ For a person with more than one site in clickd.
 1. `mttr_todo()` lists the next fix across all of them, then every other fix by worth, what slipped back and which sites changed since their last read.
 2. Work one site at a time, by the path each is set to. Call `mttr_proposals({ site })` for each: one may be `approve` and another `automatic`.
 3. Log each site's work under its own name with `mttr_log_work`, so each reads true on the progress page.
-4. `mttr_progress_link()` gives the person a private link to see it all. Hand it only to them.
+4. `mttr_progress_link()` gives the person a private link to see it all. Hand it only to them. It is listed at `https://clickd.com/mcp/all`, not at `/mcp`; it answers by name at either address.
 
 ## A site the person does not own
 
-Any key reads the public parts of a site's report, so you can study a rival. Change nothing on a site that is not the person's. Comparing two sites rule by rule with `mttr_compare`, and finding rivals with `mttr_competitors` or `mttr_near`, need a site the person has claimed.
+Any key reads the public parts of a site's report, so you can study a rival. Change nothing on a site that is not the person's. Comparing two sites rule by rule with `mttr_rivals({ site, with })`, and finding rivals with `mttr_rivals({ site })` or `mttr_rivals({ site, view: "near" })`, need a site the person has claimed.
 
 ## Sources
 

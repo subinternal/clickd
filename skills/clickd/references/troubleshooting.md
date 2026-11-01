@@ -28,9 +28,9 @@ Never paste the key into a file, a commit or a log to test this. Read it from th
 | HTTP 401 "Sign in to clickd to use it." | The client connected with no credentials where sign-in is asked for | Connect with the person's key as a bearer token |
 | "This key already has an account." | `mttr_signup` was called with a working key | Nothing to do: the key is connected |
 | "Too many sign-ups from here." | Several sign-ups from one address in a short time | Wait the minutes it says |
-| "That part of a site is kept for the key that claimed it." | A tool for claimed sites, called on a site this key has not claimed | `mttr_claim({ site })`, put up the record or file, then `mttr_claim_check({ site })`. Or keep to the public tools |
+| "That part of a site is kept for the key that claimed it." | A tool for claimed sites, called on a site this key has not claimed | `mttr_claim({ site })`, put up the record or file, then `mttr_claim({ site, step: "check" })`. Or keep to the public tools |
 | "This key reaches only the sites claimed with it." | A call that reads across every site, which a person's key may not make | Use the calls for one site |
-| "clickd has no public report of that site yet." | clickd never read it, or its read was a draft or was refused | `mttr_rescan({ site, reason: "first read" })`, then `mttr_job({ id })` |
+| "clickd has no public report of that site yet." | clickd never read it, or its read was a draft or was refused | `mttr_rescan({ site, reason: "first read" })`, then `mttr_changes({ site, job })` with the job id it returned |
 | "example.com was read too recently. Ask again after the time in allowedAt." | A read in the last ten minutes | Wait until `allowedAt`. Use the read you have meanwhile |
 | "That is enough new reads of sites not yet claimed for this hour." | The hourly allowance for reading unclaimed sites is spent | Wait an hour, or claim the site: a claimed site is read whenever asked |
 | "clickd cannot read example.com: ..." | The address is not public, such as a local or private network address | clickd reads public addresses only. Check a public preview instead |
@@ -39,14 +39,14 @@ Never paste the key into a file, a commit or a log to test this. Read it from th
 | "... checks are limited to the free tools' hourly allowance for each key." | Many one-page checks in an hour | Wait, or check one page per template rather than every page |
 | "That is 20 proposals for example.com in the last hour." | Too many proposals | Put related changes in one proposal and try again in the minutes it says |
 | "There is no proposal by that id for this key." | A wrong id, or a proposal made with another key | `mttr_proposals({ site })` lists this key's proposals |
-| "No task waiting with that id." | The task was already marked done, or the id is wrong | `mttr_queue()` lists what is waiting |
+| "No task of yours waiting with that id, so nothing was kept." | `mttr_log_work` named a `task` that was already marked done, or the id is wrong. The note was not kept either | `mttr_todo({ show: "queue" })` lists what is waiting |
 | "There is no tool by that name." | A tool name that does not exist, often a guess | `tools/list`, or [tools.md](tools.md). Names use underscores, such as `mttr_brief` |
 
 A status of 429 means too many requests in a time; MDN's page on 429 notes a server may say when to try again. clickd says the wait in its words, or in `allowedAt` for a read. Wait rather than retrying in a loop.
 
 ## A read that fails or never ends
 
-`mttr_job({ id })` answers `waiting`, `running`, `done` or `failed`, and how many reads are ahead of it.
+`mttr_changes({ site, job })`, with the job id `mttr_rescan` returned, answers the job's state, `waiting`, `running`, `done` or `failed`, and how many reads are ahead of it. Its changes stay null until the read is done.
 
 - **Waiting, with reads ahead:** the line is long. Poll every minute or two, not faster.
 - **Failed:** `error` says why. Fetch the home page with `curl -sIL` to see what a crawler is given, then ask for a read again once the cause is fixed.

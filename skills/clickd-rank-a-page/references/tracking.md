@@ -2,6 +2,8 @@
 
 Keep one log for each campaign, and write it the same way every time, so the person can read it at a glance and another agent can pick it up.
 
+`mttr_gaps` is listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see it. Every tool name answers a call at either address.
+
 ## With clickd
 
 Every change goes to `mttr_log_work({ site, step, did })`: `planned` before you start on a gate, `changed` once it ships, `checked` once a read proved it and the gate opened, `stuck` when a read did not and why. `mttr_rescan` reads the site again and `mttr_changes` says what the read moved. Keep `campaign.md` as well: it is the one place the aim, the five gates, the status and the place over time sit together.

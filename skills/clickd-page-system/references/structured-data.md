@@ -133,7 +133,7 @@ One graph for the page: the page itself, its trail and the article, each pointin
 
 ## Product
 
-`Product` with an `Offer` for each variant, or a `ProductGroup` with `hasVariant`. The `clickd` skill's shop-ready guide (`references/shop-ready.md`) covers every field Google lists for merchant listings and checks it with `mttr_product_check`. Use it rather than writing Product data from here.
+`Product` with an `Offer` for each variant, or a `ProductGroup` with `hasVariant`. The `clickd` skill's shop-ready guide (`references/shop-ready.md`) covers every field Google lists for merchant listings and checks it with `mttr_check({ kind: "product", url })`. Use it rather than writing Product data from here.
 
 ## FAQ, only where it is real
 
@@ -211,7 +211,7 @@ const html = `<script type="application/ld+json">${JSON.stringify(graph).replace
 ## Check it
 
 - `https://clickd.com/schema-checker?url=<page>` reads every block on one page, or a block pasted in.
-- Over MCP, `mttr_page({ site, path })` shows the structured data rules a page fails.
+- Over MCP, `mttr_pages({ site, path })` shows the structured data rules a page fails.
 - Google's Rich Results Test, https://search.google.com/test/rich-results, is Google's own read of one page.
 - From the command line, every block the server sends, parsed. Save the page first, then read the file:
 

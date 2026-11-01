@@ -2,6 +2,8 @@
 
 Gate four. The site's own strongest pages should point to the campaign's page from their text, in words that say what it is. This is the method, a worked change, and how to check it.
 
+`mttr_structure`, `mttr_links`, `mttr_similar` and `mttr_traffic` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
+
 ## Find the pages that should link here
 
 1. **The site's strongest pages.** With clickd, `mttr_structure({ site })` and `mttr_pages({ site })` show how the site hangs together and its pages; `mttr_links({ site, show: "all" })` lists every link from the latest read. The pages most linked from the rest of the site, and the pages most people land on (the person's Search Console Pages tab, sorted by clicks, or `mttr_traffic({ site, show: "all" })`), are where a link counts most.

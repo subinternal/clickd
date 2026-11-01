@@ -137,7 +137,7 @@ One product per page, with its price, stock and variants stated where a shopper 
 </main>
 ```
 
-- Structured data: `Product` or `ProductGroup` with an `Offer` for each variant, and `BreadcrumbList`. The `clickd` skill's shop-ready guide (`references/shop-ready.md`) fixes it field by field and checks it with `mttr_product_check`.
+- Structured data: `Product` or `ProductGroup` with an `Offer` for each variant, and `BreadcrumbList`. The `clickd` skill's shop-ready guide (`references/shop-ready.md`) fixes it field by field and checks it with `mttr_check({ kind: "product", url })`.
 - The buy form is in the HTML the server sends.
 - Rules: `structured-data`, `schema-fits`, `ratings-are-real`, `image-alt`, `breadcrumb`.
 

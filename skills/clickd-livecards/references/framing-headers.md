@@ -140,7 +140,7 @@ curl -s -o /dev/null -D - -A "Twitterbot/1.0" https://example.com/in-post | grep
 curl -s -o /dev/null -D - https://example.com/ | grep -i '^content-security-policy\|^x-frame-options'
 ```
 
-Pass: the route prints one `content-security-policy` line whose `frame-ancestors` lists X's four hosts, and no `x-frame-options`. The home page still prints `frame-ancestors 'self'` or `'none'`, or `X-Frame-Options`. A fail is two `content-security-policy` lines on the route, a comma inside one with two `frame-ancestors`, or any `x-frame-options` on the route. `mttr_x_card` reads the route's headers too, and says for each of X's hosts whether it may frame the page.
+Pass: the route prints one `content-security-policy` line whose `frame-ancestors` lists X's four hosts, and no `x-frame-options`. The home page still prints `frame-ancestors 'self'` or `'none'`, or `X-Frame-Options`. A fail is two `content-security-policy` lines on the route, a comma inside one with two `frame-ancestors`, or any `x-frame-options` on the route. `mttr_check({ kind: "x_card", url })` reads the route's headers too, and says for each of X's hosts whether it may frame the page.
 
 ## Sources
 

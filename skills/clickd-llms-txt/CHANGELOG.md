@@ -2,6 +2,10 @@
 
 Versions follow semantic versioning: a major version changes what the skill asks of the person or the agent, a minor one adds or tightens steps, a patch corrects wording. The version is in `SKILL.md` under `metadata`, as the Agent Skills format keeps anything it does not define.
 
+## 2.2.0 (2026-11-01)
+
+- After adding the file, `mttr_changes` with the job from `mttr_rescan` follows the read to its changes, as clickd's MCP server at `https://clickd.com/mcp` lists it. Every older name still answers.
+
 ## 2.1.0 (2026-10-31)
 
 - clickd.com: every address is clickd.com now, and clickd's MCP server is at `https://clickd.com/mcp`. Anything set up on mttr.si keeps working there: the MCP server, the API and OAuth still answer on it.

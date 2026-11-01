@@ -2,14 +2,16 @@
 
 Symptoms an agent meets while running a campaign, what usually causes each, and what to do. For trouble reading the figures themselves, see [measuring with Search Console](search-console.md).
 
+`mttr_backlinks` and `mttr_traffic` below are listed at `https://clickd.com/mcp/all`: connect that address in place of `https://clickd.com/mcp` to see them. Every tool name answers a call at either address.
+
 ## Gates and reads
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | The change shipped but clickd's read still fails the rule | The read came before the deploy reached the live site, a cache serves the old page, or the change is drawn by script after load | Fetch the live page with `curl -sL` and look for the change in the HTML. If it is there, `mttr_rescan` again (one read in ten minutes). If not, find the cache or the script. |
-| `mttr_rescan` returns no new read | A site is read at most once every ten minutes | Watch the job with `mttr_job`, then call `mttr_changes` once it is done. |
+| `mttr_rescan` returns no new read | A site is read at most once every ten minutes | Call `mttr_changes({ site, job })` with the job it returned every minute or two until it says done; the same reply then says what the read moved. |
 | A gate opened, then a later read fails it | A deploy, a template or someone else's change undid the fix | It has slipped: close it in the log, say so in the read-out, and fix it before any later gate. Find the change that undid it in the repository's history. |
-| `mttr_page` shows few rules for the page | clickd guessed the page is a plain page from its address and markup | Passing those rules proves less. Carry the gate with the brief's questions checked by the person, and say so in the proof. |
+| `mttr_pages({ site, path })` shows few rules for the page | clickd guessed the page is a plain page from its address and markup | Passing those rules proves less. Carry the gate with the brief's questions checked by the person, and say so in the proof. |
 | The canonical is right in the HTML but URL Inspection shows a different Google-selected canonical | Copies of the page at other addresses, or links that point at another address | Gate one is not done. Find the copies (with and without a trailing slash, with filters, with tracking in the address), link only to the one address, and inspect again after Google crawls. |
 | Gate four never opens: the strongest pages are the home page and the menu | A small site with little text on its main pages | Add one sentence with a link on the home page, and links from the two or three guides people land on. Three links in text is the floor; say in the proof which pages they are. |
 | `mttr_backlinks` shows no linking sites, though the person knows some | clickd counts only links from sites it has read; it is not a full index | Write the known links in the log by hand, marked "known to the person, not read by clickd". Gate five's count uses clickd's figure, and the read-out says it is a floor. |
