@@ -26,7 +26,7 @@ curl -s -o /dev/null -D - -A "Twitterbot/1.0" https://example.com/og/in-post.png
 curl -s https://example.com/robots.txt
 ```
 
-`mttr_check({ kind: "x_card", url })` runs the same checks in one call, as mttr rather than as Twitterbot, and gives these curl lines back so the two answers can be set side by side.
+`clickd_check({ kind: "x_card", url })` runs the same checks in one call, as mttr rather than as Twitterbot, and gives these curl lines back so the two answers can be set side by side.
 
 ## Symptoms
 

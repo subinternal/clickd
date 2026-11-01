@@ -2,6 +2,10 @@
 
 Versions follow semantic versioning: a major version changes what the skill asks of the person or the agent, a minor one adds or tightens steps, a patch corrects wording. The version is in `SKILL.md` under `metadata`, as the Agent Skills format keeps anything it does not define.
 
+## 2.3.0 (2026-11-01)
+
+- Every tool is named for clickd: `clickd_brief`, `clickd_rescan`, `clickd_changes` and the rest, where they were `mttr_*`. The old names still answer, so an agent set up before keeps working. The MCP server needs no key to start, and an assistant that only opens web pages can scan a site at `https://clickd.com/scan/example.com`.
+
 ## 2.2.0 (2026-11-01)
 
 - The card check is `mttr_check` with kind x_card, as clickd's MCP server at `https://clickd.com/mcp` lists it. Every older name still answers.

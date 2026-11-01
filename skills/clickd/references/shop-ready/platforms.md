@@ -1,6 +1,6 @@
 # Where each platform writes its product data
 
-The names below are the usual ones, checked against each platform's own documentation or source on October 16 and 18, 2026. Themes and versions differ: confirm each one in this repository before you change it, and check the live page with `mttr_check({ kind: "product", url })` before and after. The JSON each example writes is the shape in [markup.md](markup.md).
+The names below are the usual ones, checked against each platform's own documentation or source on October 16 and 18, 2026. Themes and versions differ: confirm each one in this repository before you change it, and check the live page with `clickd_check({ kind: "product", url })` before and after. The JSON each example writes is the shape in [markup.md](markup.md).
 
 ## Shopify theme (Liquid)
 

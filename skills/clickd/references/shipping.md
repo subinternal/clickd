@@ -11,11 +11,11 @@ Step 5 of `SKILL.md` ships each change only by the path chosen before you starte
 | Claimed, set to `automatic` | Nothing about deploying | Open a pull request and stop |
 | Not claimed, or no MCP | Anything | Open a pull request and stop |
 
-`mttr_proposals({ site })` says which mode a site is set to. Read it before you start, and do not change it yourself. The mode is the person's choice: they set each site to approve or automatic on their account page, `https://clickd.com/account`, and turning approve off is emailed to them. Never turn approval off for them.
+`clickd_proposals({ site })` says which mode a site is set to. Read it before you start, and do not change it yourself. The mode is the person's choice: they set each site to approve or automatic on their account page, `https://clickd.com/account`, and turning approve off is emailed to them. Never turn approval off for them.
 
 ## A proposal the person can judge
 
-`mttr_propose({ site, title, summary, rule, pages, diff })`. The person reads it in an email with an Approve and a Decline link, so write it for someone who has not seen your session.
+`clickd_propose({ site, title, summary, rule, pages, diff })`. The person reads it in an email with an Approve and a Decline link, so write it for someone who has not seen your session.
 
 | Input | Limit | Write |
 |---|---|---|
@@ -28,7 +28,7 @@ Step 5 of `SKILL.md` ships each change only by the path chosen before you starte
 A worked example:
 
 ```
-mttr_propose({
+clickd_propose({
   site: "example.com",
   title: "Give each guide its own canonical address",
   summary: "The shared head sets every page's canonical to the home page, so 41 pages say they are copies of it. This builds the canonical from each page's own address. One file: layouts/head.html. Checked on a preview: /guides/gravel and /services/delivery now point to themselves.",
@@ -42,12 +42,12 @@ Keep the diff to the change itself. A diff over 20,000 characters is usually mor
 
 ## Waiting for the answer
 
-`mttr_proposals({ id })` answers `state` and `deploy`, with a sentence under `says`:
+`clickd_proposals({ id })` answers `state` and `deploy`, with a sentence under `says`:
 
 | `state` | `deploy` | What you do |
 |---|---|---|
 | `pending` | false | Wait. Ask again in a few minutes. Meanwhile you may work on the next fix, but do not deploy this one |
-| `approved` | true | Deploy this change, as proposed and nothing more, then read again with `mttr_rescan` |
+| `approved` | true | Deploy this change, as proposed and nothing more, then read again with `clickd_rescan` |
 | `declined` | false | Do not deploy. Read `decided.note` for the person's reason, and say what you will do instead |
 | `expired` | false | No answer came within 72 hours. Do not deploy. Propose again only if it still matters |
 
@@ -56,7 +56,7 @@ Rules that keep it honest:
 - Deploy exactly what was approved. If the change grows after approval, propose again.
 - `emailed` false means no email went out; the proposal is kept and the person can still answer it on their account page. Tell them it is waiting.
 - At most 20 proposals a site in an hour. Put related changes in one: one rule and its template is a good size.
-- Name the proposal in `mttr_log_work({ site, step: "changed", did, proposal })` once you deploy it.
+- Name the proposal in `clickd_log_work({ site, step: "changed", did, proposal })` once you deploy it.
 
 ## Pull requests
 
@@ -66,7 +66,7 @@ When the path is a pull request, the pull request carries what a proposal would:
 Answers: canonical (41 pages), from clickd's read of <date>, score <n>.
 Touches: layouts/head.html, the shared head for every page.
 Checked: on the preview, /guides/gravel and /services/delivery now have canonicals to themselves.
-After merge: ask clickd to read the site again and compare (mttr_rescan, then mttr_changes).
+After merge: ask clickd to read the site again and compare (clickd_rescan, then clickd_changes).
 clickd's score says pages are well formed. It does not say any assistant cites the site.
 ```
 

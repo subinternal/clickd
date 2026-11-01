@@ -4,9 +4,9 @@ Most sites are not new. This is the order to move a live site onto the patterns 
 
 ## The order
 
-1. **Baseline.** `mttr_site({ site })`, `mttr_brief({ site })` and `mttr_pages({ site })`, kept as they came back. With no key, the site's report at `https://clickd.com/report/<domain>`. Save the list of live addresses too: the sitemap, and `mttr_map({ site })`, which is listed at `https://clickd.com/mcp/all` (connect that address in place of /mcp to see it; every tool name answers at either address).
-2. **Group pages by template.** For each template, the addresses it makes and the kind clickd files them under (`mttr_pages({ site, kind: "service" })`). A template whose pages are filed under the wrong kind is checked against too few rules: fix the kind first (step 1 of the skill).
-3. **Rank the templates.** Work first on the template with the most pages failing the heaviest rules. `mttr_pages({ site, failing: "<rule>" })` for each failing rule in the brief shows which template the failures share.
+1. **Baseline.** `clickd_site({ site })`, `clickd_brief({ site })` and `clickd_pages({ site })`, kept as they came back. With no key, the site's report at `https://clickd.com/report/<domain>`. Save the list of live addresses too: the sitemap, and `clickd_map({ site })`, which is listed at `https://clickd.com/mcp/all` (connect that address in place of /mcp to see it; every tool name answers at either address).
+2. **Group pages by template.** For each template, the addresses it makes and the kind clickd files them under (`clickd_pages({ site, kind: "service" })`). A template whose pages are filed under the wrong kind is checked against too few rules: fix the kind first (step 1 of the skill).
+3. **Rank the templates.** Work first on the template with the most pages failing the heaviest rules. `clickd_pages({ site, failing: "<rule>" })` for each failing rule in the brief shows which template the failures share.
 4. **The frame first.** The shared layout touches every page at once and changes no address: title, description, canonical, landmarks, share tags, one `h1` out of the header. Ship it alone and check it.
 5. **One template at a time.** The outline, the structured data and the links for one kind of page; ship, rescan, compare; then the next.
 6. **Addresses last, and only if they must change.** See below.
@@ -65,9 +65,9 @@ Only what is genuinely different on each. Everywhere else the patterns are plain
 After each release goes live:
 
 ```
-mttr_rescan({ site, reason: "frame: canonical, landmarks, one h1" })
-mttr_changes({ site, job })                       every minute or two until it says done, then rules now passing, rules newly failing, pages added and removed
-mttr_pages({ site, failing: "<rule>" })           any page of the template still failing
+clickd_rescan({ site, reason: "frame: canonical, landmarks, one h1" })
+clickd_changes({ site, job })                       every minute or two until it says done, then rules now passing, rules newly failing, pages added and removed
+clickd_pages({ site, failing: "<rule>" })           any page of the template still failing
 ```
 
 - A rule newly failing is the first thing to read. A frame change that adds a second `h1` site-wide, or a canonical with the wrong host, shows here on every page at once.

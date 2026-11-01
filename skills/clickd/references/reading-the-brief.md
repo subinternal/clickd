@@ -4,7 +4,7 @@ Step 2 of `SKILL.md` hands you the fix list. This file says what each part of it
 
 ## What the brief is made of
 
-`mttr_brief({ site })` answers Markdown in the same order every time:
+`clickd_brief({ site })` answers Markdown in the same order every time:
 
 | Part | What it tells you |
 |---|---|
@@ -19,7 +19,7 @@ Step 2 of `SKILL.md` hands you the fix list. This file says what each part of it
 
 The stages weigh 35 (access), 30 (understand), 20 (trust) and 15 (act) of the total. A blocker in access costs more than any fix in act.
 
-The fifth line of "How to work this list" says how to read again once your changes are live: `mttr_rescan`, then `mttr_changes`, as step 6 does, or the address of a fresh read with no key.
+The fifth line of "How to work this list" says how to read again once your changes are live: `clickd_rescan`, then `clickd_changes`, as step 6 does, or the address of a fresh read with no key.
 
 ## Order of worth, and when to depart from it
 
@@ -28,11 +28,11 @@ Fixes are ordered by the rule's weight times the share of pages failing it. That
 - **A blocker anywhere goes first**, even if it sits low in the list because it touches few pages. `loads`, `indexable` and `robots-open` are blockers.
 - **One template behind several fixes.** If fixes 2, 5 and 7 all live in the article template (`dated`, `named-publisher`, `breadcrumb`), one change to that template answers all three. Group them, but still ship them as one rule a change where the person needs to judge each.
 - **A fix that needs the person's facts.** `sources-shown`, `depth` and `next-step` can need facts only the person has: real sources, real detail, a real contact route. Ask, and move on to the next fix while you wait. Never fill the gap with invented content.
-- **A queued task.** On a claimed site, anything in `mttr_todo({ show: "queue" })` comes before the brief.
+- **A queued task.** On a claimed site, anything in `clickd_todo({ show: "queue" })` comes before the brief.
 
 ## The plan, beside the brief
 
-`mttr_brief({ site, format: "steps" })` gives the four fixes worth the most as steps, each with its worth in points, what to do, and a few of its pages, then the words to hand another agent. Use it when:
+`clickd_brief({ site, format: "steps" })` gives the four fixes worth the most as steps, each with its worth in points, what to do, and a few of its pages, then the words to hand another agent. Use it when:
 
 - you hand part of the work to a second agent: pass it the plan's words, not your own summary;
 - the person wants to know what the next hour is worth: each step says its points.
@@ -41,7 +41,7 @@ The brief is the full list; the plan is its top. Where they seem to disagree, th
 
 ## The same read as data
 
-`mttr_site({ site })` is the read as JSON: `score`, `stages`, `pages`, `truncated`, `draft`, `blocked`, and `fixes`, each with `rule`, `failing` and `pages`. When `pages` is null, the run's page list was not kept: read the site again before you work that fix, or you will be guessing which pages fail. Every reply with a score carries `caveat`; repeat its sense when you report.
+`clickd_site({ site })` is the read as JSON: `score`, `stages`, `pages`, `truncated`, `draft`, `blocked`, and `fixes`, each with `rule`, `failing` and `pages`. When `pages` is null, the run's page list was not kept: read the site again before you work that fix, or you will be guessing which pages fail. Every reply with a score carries `caveat`; repeat its sense when you report.
 
 ## Text that came from the site
 
@@ -57,7 +57,7 @@ Before step 3, write down for each fix you will work:
 3. sources-shown (trust, weight 4): 12 pages. Needs real sources from the person. Asked.
 ```
 
-Then, over MCP, `mttr_log_work({ site, step: "planned", did, rules })` with the same list in a sentence or two.
+Then, over MCP, `clickd_log_work({ site, step: "planned", did, rules })` with the same list in a sentence or two.
 
 ## Mistakes that cost time
 

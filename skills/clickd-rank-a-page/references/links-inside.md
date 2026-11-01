@@ -2,13 +2,13 @@
 
 Gate four. The site's own strongest pages should point to the campaign's page from their text, in words that say what it is. This is the method, a worked change, and how to check it.
 
-`mttr_structure`, `mttr_links`, `mttr_similar` and `mttr_traffic` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
+`clickd_structure`, `clickd_links`, `clickd_similar` and `clickd_traffic` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
 
 ## Find the pages that should link here
 
-1. **The site's strongest pages.** With clickd, `mttr_structure({ site })` and `mttr_pages({ site })` show how the site hangs together and its pages; `mttr_links({ site, show: "all" })` lists every link from the latest read. The pages most linked from the rest of the site, and the pages most people land on (the person's Search Console Pages tab, sorted by clicks, or `mttr_traffic({ site, show: "all" })`), are where a link counts most.
-2. **What already links here.** `mttr_links({ site, show: "content", q: "<the page's path>" })` lists links to the page from inside other pages' text. Navigation and footer links say a page exists; a link in text says what it is related to (the `linked-in-context` rule).
-3. **Pages on the same subject.** `mttr_similar({ site, path })` gives the pages that read most like this one, each with the passages that come closest. Those passages are often exactly where a link belongs.
+1. **The site's strongest pages.** With clickd, `clickd_structure({ site })` and `clickd_pages({ site })` show how the site hangs together and its pages; `clickd_links({ site, show: "all" })` lists every link from the latest read. The pages most linked from the rest of the site, and the pages most people land on (the person's Search Console Pages tab, sorted by clicks, or `clickd_traffic({ site, show: "all" })`), are where a link counts most.
+2. **What already links here.** `clickd_links({ site, show: "content", q: "<the page's path>" })` lists links to the page from inside other pages' text. Navigation and footer links say a page exists; a link in text says what it is related to (the `linked-in-context` rule).
+3. **Pages on the same subject.** `clickd_similar({ site, path })` gives the pages that read most like this one, each with the passages that come closest. Those passages are often exactly where a link belongs.
 4. **Without clickd:** the home page, the navigation, the parent category, and the guides the person names as most visited. Search the repository for pages that mention the subject by name: `grep -ril "waterproof" content/ src/pages/`.
 
 Pick three to five pages where a reader of that page would want this one. Three good links from strong pages in text beat thirty from a footer.
@@ -42,15 +42,15 @@ Vary the words across pages. "waterproof hiking boots" on one, "boots that keep 
 
 | Trap | How to spot it | What to do |
 |---|---|---|
-| Links added to the footer or a sitewide menu only | `mttr_links({ site, show: "content", q })` shows no new links after the rescan | Footer links are fine but do not open the gate. Add links in text. |
-| A link through a redirect | The `href` is an old address, or has a trailing slash the page does not | Point it at the final address. `mttr_links({ site })` lists broken links; `direct-links` flags redirecting ones. |
+| Links added to the footer or a sitewide menu only | `clickd_links({ site, show: "content", q })` shows no new links after the rescan | Footer links are fine but do not open the gate. Add links in text. |
+| A link through a redirect | The `href` is an old address, or has a trailing slash the page does not | Point it at the final address. `clickd_links({ site })` lists broken links; `direct-links` flags redirecting ones. |
 | A link drawn by script after load | The link is in the browser but not in `curl -sL <page>` | Put it in the HTML the server sends. |
 | Many pages linking with the same exact words | A search of the repository finds the same anchor text five times | Rewrite most of them in plain words for each page's reader. |
 | The page is deep | More than three clicks from the home page (`within-three-clicks`) | A link from the home page or a top category is worth more than another from a deep page. |
-| A competing page on the same subject | `mttr_similar` shows a page that reads nearly the same | Link from it to the campaign's page with words that say how they differ, and make sure the campaign's page does not link to it as the main answer for the search. |
+| A competing page on the same subject | `clickd_similar` shows a page that reads nearly the same | Link from it to the campaign's page with words that say how they differ, and make sure the campaign's page does not link to it as the main answer for the search. |
 
 ## Verifying the gate
 
-- **With clickd:** after the rescan, `mttr_links({ site, show: "content", q: "<the page's path>" })` lists the new links, from the pages you chose. The gate opens when at least three of the site's ten most linked pages link to the page from their text, or the page is among the twenty most linked. Write the count in the proof: "Proof: clickd's read on 2026-11-08, 4 of the 10 most linked pages link here in text, up from 1."
+- **With clickd:** after the rescan, `clickd_links({ site, show: "content", q: "<the page's path>" })` lists the new links, from the pages you chose. The gate opens when at least three of the site's ten most linked pages link to the page from their text, or the page is among the twenty most linked. Write the count in the proof: "Proof: clickd's read on 2026-11-08, 4 of the 10 most linked pages link here in text, up from 1."
 - **Without clickd:** for each linking page, `curl -sL https://<site>/<linking path> | grep -o 'href="/hiking-boots"'` finds the link in the HTML the server sends. The person confirms the pages chosen are among the most visited.
 - **A fail:** a link that only appears after script runs, or that goes through a redirect, does not count. Log it as `stuck` and fix it.

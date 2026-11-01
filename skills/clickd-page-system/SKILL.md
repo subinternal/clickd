@@ -3,7 +3,7 @@ name: clickd-page-system
 description: Builds a site's page templates and shared components so search engines and AI assistants read every page well, and proves each pattern with clickd. Covers one h1 and a real outline, landmarks, an answer-first opening, structured data for each kind of page, share tags, canonical and indexing, internal links and hubs, images, speed and contrast, spacing on one scale with an even rhythm, and moving an existing site onto it a template at a time. Use when building or reworking a site's layout, page templates, components or design system, adding a new kind of page, or when clickd findings point at a shared template. About the structure of pages and their spacing, not their color, type or brand.
 metadata:
   author: subinternal
-  version: "2.2.0"
+  version: "2.3.0"
 ---
 
 <!-- subinternal:header -->
@@ -14,7 +14,7 @@ metadata:
 │    ▄ █ █    page system                                            │
 │  ▄ █ █ █                                                           │
 │                                                                    │
-│  skill 2.2.0  ·  by subinternal  ·  clickd.com/skills/page-system  │
+│  skill 2.3.0  ·  by subinternal  ·  clickd.com/skills/page-system  │
 ╰────────────────────────────────────────────────────────────────────╯
 ```
 
@@ -44,7 +44,7 @@ Work the eight steps in order. Do not change a file before step 2. Each step lin
 
 1. Ask the person for the site's live domain, or the local address of a site not yet live, and whether you may deploy or only open a pull request.
 2. Find how pages are made: the framework, where the shared layout lives, where each template lives, and whether pages come from files, a CMS or a database. Check whether a plugin or app already writes meta tags or JSON-LD. Say what you found.
-3. Take a baseline. With clickd connected over MCP (the `clickd` skill sets it up), call `mttr_site({ site })`, `mttr_brief({ site })` and `mttr_pages({ site })`. With no key, open `https://clickd.com/report/<domain>`, or check single pages with the free tools at `https://clickd.com/tools`. Keep the result: step 7 compares against it.
+3. Take a baseline. With clickd connected over MCP (the `clickd` skill sets it up), call `clickd_site({ site })`, `clickd_brief({ site })` and `clickd_pages({ site })`. With no key, open `https://clickd.com/report/<domain>`, or check single pages with the free tools at `https://clickd.com/tools`. Keep the result: step 7 compares against it.
 4. On a live site with pages that already rank, read [references/migration.md](references/migration.md) first: it sets the order of releases, and what not to change while you work.
 
 ## 1. Name each kind of page
@@ -61,7 +61,7 @@ List every template and say which kind of page each one makes.
 
 clickd gives each kind its own rules, so a page it files under the wrong kind is checked against too few. Where the address cannot change, the structured data type tells clickd the kind. Never move a live address only to change its kind without a redirect and the person's leave.
 
-Check: `mttr_pages({ site, kind: "page" })` lists what clickd filed as plain pages. A service or a guide in that list is filed wrong. The full order clickd uses is in [references/page-kinds.md](references/page-kinds.md).
+Check: `clickd_pages({ site, kind: "page" })` lists what clickd filed as plain pages. A service or a guide in that list is filed wrong. The full order clickd uses is in [references/page-kinds.md](references/page-kinds.md).
 
 ## 2. Build the frame once
 
@@ -105,7 +105,7 @@ Each template writes one JSON-LD graph that says what the page is, from the same
 | Article | `Article` or `BlogPosting` with `headline`, `datePublished`, `dateModified`, `author` and `publisher`; `BreadcrumbList` |
 | Hub and plain page | `WebPage` or `CollectionPage`, and `BreadcrumbList` below the home page |
 
-`FAQPage` only where the questions and answers are on the page, word for word. A rating only where the reviews it counts are on the page. Never a fact the page does not state. Build the graph as an object from the page's fields and serialize it once; never type JSON into a template as text. Examples for each type, the escaping for each framework, and the failures that break a block are in [references/structured-data.md](references/structured-data.md). `mttr_schema_create({ type, fields })` gives a block from fields you supply and leaves the rest empty.
+`FAQPage` only where the questions and answers are on the page, word for word. A rating only where the reviews it counts are on the page. Never a fact the page does not state. Build the graph as an object from the page's fields and serialize it once; never type JSON into a template as text. Examples for each type, the escaping for each framework, and the failures that break a block are in [references/structured-data.md](references/structured-data.md). `clickd_schema_create({ type, fields })` gives a block from fields you supply and leaves the rest empty.
 
 Check: `https://clickd.com/schema-checker?url=<page>` on a page of each template finds the types the table names, and every block parses.
 
@@ -122,7 +122,7 @@ Make the site a tree a crawler can walk: home, then hubs, then the pages under t
 
 Hub and spoke, paged lists, town pages and the sitemap, worked, are in [references/links-and-hubs.md](references/links-and-hubs.md).
 
-Check: `mttr_structure({ site })` shows every section within three clicks (it is listed at `https://clickd.com/mcp/all`: connect that address in place of /mcp to see it; every tool name answers at either address); `mttr_pages({ site, failing: "linked-in-context" })` is empty.
+Check: `clickd_structure({ site })` shows every section within three clicks (it is listed at `https://clickd.com/mcp/all`: connect that address in place of /mcp to see it; every tool name answers at either address); `clickd_pages({ site, failing: "linked-in-context" })` is empty.
 
 ## 6. Build the parts that carry weight
 
@@ -136,7 +136,7 @@ Each of these is a component with one job. The patterns are in [references/compo
 - Contrast: body text at least 4.5 to 1 against its background, in every theme the site has.
 - Speed: HTML compressed with gzip or Brotli, pages cached, no script or font that blocks the first paint without need. Google's Core Web Vitals are the shared yardstick for how a page loads; the order of work and how to measure it are in [references/images-and-speed.md](references/images-and-speed.md).
 
-Check: `mttr_pages({ site, failing: "image-alt" })` and the same for `dated` and `sources-shown` come back empty.
+Check: `clickd_pages({ site, failing: "image-alt" })` and the same for `dated` and `sources-shown` come back empty.
 
 ## 7. Set the spacing
 
@@ -167,9 +167,9 @@ Ship as the person allows, then check each pattern on a live page of each templa
 | Speed | `compressed`, `quick-to-answer` | `https://clickd.com/website-speed-test?url=<page>` |
 | llms.txt | `llms-txt` | `https://clickd.com/ai-crawler-checker?url=<domain>` |
 
-`answers-the-question` and `claims-supported` are read by clickd's model judge, which gives an opinion a person may need to check; the rest are read by code. `mttr_rules()`, or `https://clickd.com/rulebook` with no key, gives each rule's current wording and fix. Read it there rather than from this file.
+`answers-the-question` and `claims-supported` are read by clickd's model judge, which gives an opinion a person may need to check; the rest are read by code. `clickd_rules()`, or `https://clickd.com/rulebook` with no key, gives each rule's current wording and fix. Read it there rather than from this file.
 
-Over MCP, once the change is live: `mttr_rescan({ site, reason: "page templates" })`, then `mttr_changes({ site, job })` with the job it returns, every minute or two until it says done; the same reply then carries the changes against the baseline. `mttr_pages({ site, failing: "<rule>" })` lists any page a rule still fails, which usually points at a template step 1 missed. A rule that still fails after the fix is worked through by symptom in [references/troubleshooting.md](references/troubleshooting.md).
+Over MCP, once the change is live: `clickd_rescan({ site, reason: "page templates" })`, then `clickd_changes({ site, job })` with the job it returns, every minute or two until it says done; the same reply then carries the changes against the baseline. `clickd_pages({ site, failing: "<rule>" })` lists any page a rule still fails, which usually points at a template step 1 missed. A rule that still fails after the fix is worked through by symptom in [references/troubleshooting.md](references/troubleshooting.md).
 
 ## Report back
 

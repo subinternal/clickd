@@ -11,7 +11,7 @@ Knowing what code counts saves guessing.
 - `question-headings` looks at the `h2`, `h3` and `summary` elements inside the content for one that ends in a question mark.
 - `answer-first` finds the first `h2` that is a question and counts the words of the first paragraph after it: 25 to 90 words passes. Code checks only place and length; whether it truly answers is the judge's rule, `answers-the-question`, or a person's read.
 
-`mttr_rules()` gives each rule's current wording. If it says something different from this file, it is right.
+`clickd_rules()` gives each rule's current wording. If it says something different from this file, it is right.
 
 ## The outline, worked
 
@@ -88,9 +88,9 @@ After: one `h1`, levels in order, the answer right under its question.
 | What | How | Pass | Fail |
 |---|---|---|---|
 | One `h1` and the order | `https://clickd.com/h1-checker?url=<page>` | One `h1`, no level skipped going down | Two `h1`, or an `h2` then an `h4` |
-| What a crawler gets | `https://clickd.com/agent-view?url=<page>`, or `mttr_check({ kind: "agent", url })` | The main text, headings in order, the answer under the first question | A shell a script fills in, or the menu as the text |
+| What a crawler gets | `https://clickd.com/agent-view?url=<page>`, or `clickd_check({ kind: "agent", url })` | The main text, headings in order, the answer under the first question | A shell a script fills in, or the menu as the text |
 | `h1` count in the raw HTML | `curl -s <page> \| grep -o '<h1' \| wc -l` | `1` | `0`, or `2` and more |
-| Every template at once | `mttr_pages({ site, failing: "one-h1" })` | An empty list | Pages of one template, which points at that template |
+| Every template at once | `clickd_pages({ site, failing: "one-h1" })` | An empty list | Pages of one template, which points at that template |
 
 The `curl` count reads the HTML the server sends, which is what clickd and most AI crawlers read. A browser's inspector shows the page after scripts ran, which can differ.
 

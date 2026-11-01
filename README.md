@@ -114,14 +114,13 @@ Copy a skill's folder to where your agent loads skills from:
 
 ## Connect your agent (optional, free)
 
-Connected over MCP, your agent gets the full brief for a site, its history, the next page worth writing, and a re-read whenever it asks for one. Get a free key at [clickd.com/agents](https://clickd.com/agents), then in Claude Code:
+Connected over MCP, your agent gets the full brief for a site, its history, the next page worth writing, and a re-read whenever it asks for one. No key is needed to start. In Claude Code:
 
 ```sh
-claude mcp add --transport http clickd https://clickd.com/mcp \
-  --header "Authorization: Bearer $CLICKD_KEY"
+claude mcp add --transport http clickd https://clickd.com/mcp
 ```
 
-Cursor, VS Code, Codex and the rest are on [clickd.com/agents](https://clickd.com/agents#connect).
+A free key, made with an email, adds re-reads on demand and your claimed sites' private parts. Cursor, VS Code, Codex and the rest are on [clickd.com/docs/mcp](https://clickd.com/docs/mcp). An assistant with no MCP can scan a site by opening `https://clickd.com/scan/example.com`.
 
 ## What you won't get
 
@@ -139,7 +138,7 @@ Cursor, VS Code, Codex and the rest are on [clickd.com/agents](https://clickd.co
 
 ## Moved from subinternal/mttr
 
-These skills were `subinternal/mttr` until October 31, 2026. That repository is archived and still installs, but new versions are only here. The skills are renamed (`mttr` to `clickd`, `mttr-page-system` to `clickd-page-system`, and so on), and Shop ready is now part of the `clickd` skill. The MCP tools keep their names (`mttr_brief`, `mttr_site` and the rest), so nothing you've connected breaks.
+These skills were `subinternal/mttr` until October 31, 2026. That repository is archived and still installs, but new versions are only here. The skills are renamed (`mttr` to `clickd`, `mttr-page-system` to `clickd-page-system`, and so on), and Shop ready is now part of the `clickd` skill. The MCP tools are named for clickd since November 1, 2026 (`clickd_brief`, `clickd_site` and the rest). The old `mttr_*` names still answer, so nothing you've connected breaks.
 
 ## Made by
 

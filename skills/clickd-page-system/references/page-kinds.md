@@ -2,7 +2,7 @@
 
 One template for each kind of page, as the outline its HTML should have. The words in angle brackets come from the page's own data. Keep the site's own classes, components and look; these show only what is underneath.
 
-Each kind lists the clickd rules that check it. `mttr_rules()` or `https://clickd.com/rulebook` gives each rule's current wording.
+Each kind lists the clickd rules that check it. `clickd_rules()` or `https://clickd.com/rulebook` gives each rule's current wording.
 
 ## How clickd files a page
 
@@ -13,7 +13,7 @@ clickd decides a page's kind from its address and its structured data, in this o
 3. A `Service` or `Product` in its data, or an address under `/service/`, `/services/`, `/service-area/`, `/location/`, `/locations/`, `/product/` or `/products/`, is a service page.
 4. Anything else is a plain page, which skips the rules for content (`question-headings`, `depth`, `has-image`, `breadcrumb` and others).
 
-So a service at `/excavation` or `/springfield/excavation`, with no `Service` in its data, is read as a plain page and checked against too few rules. Writing the right type in its data is the fix that moves no address. Check how a template's pages were filed with `mttr_pages({ site, kind: "page" })`: a service or a guide in that list is filed wrong.
+So a service at `/excavation` or `/springfield/excavation`, with no `Service` in its data, is read as a plain page and checked against too few rules. Writing the right type in its data is the fix that moves no address. Check how a template's pages were filed with `clickd_pages({ site, kind: "page" })`: a service or a guide in that list is filed wrong.
 
 The minimum words clickd asks for (`depth`) differ by kind: 150 for the home page, 350 for a service page, 500 for an article. They count the text inside `<main>`, less menus and forms.
 
@@ -137,7 +137,7 @@ One product per page, with its price, stock and variants stated where a shopper 
 </main>
 ```
 
-- Structured data: `Product` or `ProductGroup` with an `Offer` for each variant, and `BreadcrumbList`. The `clickd` skill's shop-ready guide (`references/shop-ready.md`) fixes it field by field and checks it with `mttr_check({ kind: "product", url })`.
+- Structured data: `Product` or `ProductGroup` with an `Offer` for each variant, and `BreadcrumbList`. The `clickd` skill's shop-ready guide (`references/shop-ready.md`) fixes it field by field and checks it with `clickd_check({ kind: "product", url })`.
 - The buy form is in the HTML the server sends.
 - Rules: `structured-data`, `schema-fits`, `ratings-are-real`, `image-alt`, `breadcrumb`.
 

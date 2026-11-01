@@ -2,17 +2,17 @@
 
 The campaign's place comes from Google's own figures, never from a search the agent or the person runs and reads by eye. Search Console's Performance report is that record. This is how to read it for one page and one search, what its figures mean, and what to write in the log.
 
-`mttr_queries` and `mttr_traffic` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
+`clickd_queries` and `clickd_traffic` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
 
 ## With clickd
 
 clickd has Search Console figures only for sites whose owner added clickd in Search Console, and gives them only for a site the person has claimed.
 
-- `mttr_queries({ site, page: "<the page's full address>" })`: the searches the page was shown for, each with clicks, impressions and average place. Find the campaign's search in it.
-- `mttr_queries({ site, show: "near" })`: searches at places 4 to 20 across the site, to see the campaign's search among the others close to the top.
-- `mttr_traffic({ site })`: clicks by day and each page's clicks now against as many days before, as a baseline. The page losing clicks while its place holds can mean fewer people search, not that the page fell.
+- `clickd_queries({ site, page: "<the page's full address>" })`: the searches the page was shown for, each with clicks, impressions and average place. Find the campaign's search in it.
+- `clickd_queries({ site, show: "near" })`: searches at places 4 to 20 across the site, to see the campaign's search among the others close to the top.
+- `clickd_traffic({ site })`: clicks by day and each page's clicks now against as many days before, as a baseline. The page losing clicks while its place holds can mean fewer people search, not that the page fell.
 
-If `mttr_queries` returns nothing for the site, the owner has not added clickd in Search Console, or the site is not claimed. Use the person's report by hand as below, and say which source each figure came from.
+If `clickd_queries` returns nothing for the site, the owner has not added clickd in Search Console, or the site is not claimed. Use the person's report by hand as below, and say which source each figure came from.
 
 ## Without clickd: the Performance report, by hand
 
@@ -63,4 +63,4 @@ The URL Inspection tool in Search Console says how Google holds the page ([URL I
 | The place in Search Console differs from what the person sees | Their results are personalized by place, device and history | Search Console's average is the measure. Say so in the read-out. |
 | Place improved, clicks did not | Something above the ordinary results takes the clicks, or few people search it this season | Note it. The campaign's aim is a place, but tell the person what the clicks say. |
 | Another page of the site shows for the search | Two pages compete for it | Filter by the query alone ("Queries containing") and look at the Pages tab; see "Is it the right page" in [choosing the search](choosing-the-search.md). |
-| `mttr_queries` and the report by hand disagree slightly | Different windows or filters, or newest data still preliminary | Use one source for the campaign and write which. |
+| `clickd_queries` and the report by hand disagree slightly | Different windows or filters, or newest data still preliminary | Use one source for the campaign and write which. |

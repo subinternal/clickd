@@ -87,7 +87,7 @@ A page for each town that swaps only the town's name is what Google's spam polic
 
 - Give each town page what is true of that town: jobs done there, the soil or the rules that differ, how far the crew travels, photos from there. If there is nothing, keep one service area page with the towns listed.
 - Shared blocks inside `<main>`, such as a "Why choose us" paragraph on every page, count toward the shared text. Keep repeated copy short, or outside `<main>`.
-- Check with `mttr_pages({ site, section: "/service-area" })` and the site's report: a failing `pages-are-distinct` names the closest pair and how much they share.
+- Check with `clickd_pages({ site, section: "/service-area" })` and the site's report: a failing `pages-are-distinct` names the closest pair and how much they share.
 
 ## The sitemap
 
@@ -110,13 +110,13 @@ Sitemap: https://example.com/sitemap.xml
 
 ## Check it
 
-`mttr_structure`, `mttr_map` and `mttr_links` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
+`clickd_structure`, `clickd_map` and `clickd_links` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
 
 | What | How | Pass | Fail |
 |---|---|---|---|
-| Clicks from home | `mttr_structure({ site })`, or `mttr_map({ site, view: "links" })` | Every section within three clicks | A section at four or more, or pages no link leads to |
-| Links in content | `mttr_pages({ site, failing: "linked-in-context" })` | An empty list | The pages to link to from a related page's text |
-| Redirected and broken links | `mttr_links({ site })`, `mttr_pages({ site, failing: "direct-links" })` | Nothing broken, nothing reached through a redirect | Each link to fix, with the page it is on |
+| Clicks from home | `clickd_structure({ site })`, or `clickd_map({ site, view: "links" })` | Every section within three clicks | A section at four or more, or pages no link leads to |
+| Links in content | `clickd_pages({ site, failing: "linked-in-context" })` | An empty list | The pages to link to from a related page's text |
+| Redirected and broken links | `clickd_links({ site })`, `clickd_pages({ site, failing: "direct-links" })` | Nothing broken, nothing reached through a redirect | Each link to fix, with the page it is on |
 | One page's redirects | `https://clickd.com/redirect-checker?url=<page>` | One hop or none | A chain, or a temporary redirect for a page that moved for good |
 | The sitemap | `curl -s https://<domain>/sitemap.xml \| grep -c '<loc>'` against the count of pages that should rank | The same number | More (pages that redirect or are kept out) or fewer |
 

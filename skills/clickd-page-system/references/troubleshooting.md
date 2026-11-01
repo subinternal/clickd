@@ -3,9 +3,9 @@
 The fix is in place and clickd still reports the rule. Most often the change did not reach the HTML the server sends, or reached one template and not another. Start every case the same way:
 
 1. Is the change live? `curl -s https://<page> | grep -c '<the thing you added>'`. Zero means it is not deployed, is cached, or is added by script after load.
-2. Was the site read after it went live? `mttr_rescan({ site, reason })`, then `mttr_changes({ site, job })` with the job it returns, every minute or two until it says done. A site is read at most once every ten minutes.
-3. Which pages still fail? `mttr_pages({ site, failing: "<rule>" })`. If they share a template, the fix missed that template; if they share a CMS field, the field is empty.
-4. What does the page itself say? `mttr_pages({ site, path })` gives the rule's finding in words, such as "2 h1 headings" or "Canonical points to /services".
+2. Was the site read after it went live? `clickd_rescan({ site, reason })`, then `clickd_changes({ site, job })` with the job it returns, every minute or two until it says done. A site is read at most once every ten minutes.
+3. Which pages still fail? `clickd_pages({ site, failing: "<rule>" })`. If they share a template, the fix missed that template; if they share a CMS field, the field is empty.
+4. What does the page itself say? `clickd_pages({ site, path })` gives the rule's finding in words, such as "2 h1 headings" or "Canonical points to /services".
 
 ## By rule
 
@@ -40,7 +40,7 @@ The fix is in place and clickd still reports the rule. Most often the change did
 
 - The browser's inspector shows the fix, but the server's HTML does not: the inspector shows the page after scripts ran. Check with `curl` or `https://clickd.com/agent-view?url=<page>`.
 - The fix shows on the page you tested and not on others: a CDN cache or a static build that was not rebuilt. Purge or rebuild, then read again.
-- A score went up and a page vanished: a page that now redirects or answers 404 has dropped out of the read. `mttr_changes({ site })` lists pages removed.
+- A score went up and a page vanished: a page that now redirects or answers 404 has dropped out of the read. `clickd_changes({ site })` lists pages removed.
 - Every rule passes. The pages are well formed; that does not say any assistant cites the site.
 
 ## Sources

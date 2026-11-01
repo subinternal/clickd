@@ -3,7 +3,7 @@ name: clickd-livecards
 description: Makes a page of a site run inside a post on X. X frames the page in the post when its link declares a player card, so a demo, a tool, a game or a short landing page is usable without leaving the timeline. Covers the card tags, letting X and only X frame one route, what X's crawler is really served, the embed mode a framed page needs (scrolling, links, overlays) and X's card cache, and checks the live route with clickd. Use when asked to make a page, demo or app work inside a tweet or post, for a twitter:card player or twitter:player, or when a player card shows as a plain image, a blank frame, or a frame that will not scroll. Not for a normal link preview, embedding a post on a site, or posting video.
 metadata:
   author: subinternal
-  version: "2.2.0"
+  version: "2.3.0"
 ---
 
 <!-- subinternal:header -->
@@ -14,7 +14,7 @@ metadata:
 │    ▄ █ █    livecards                                            │
 │  ▄ █ █ █                                                         │
 │                                                                  │
-│  skill 2.2.0  ·  by subinternal  ·  clickd.com/skills/livecards  │
+│  skill 2.3.0  ·  by subinternal  ·  clickd.com/skills/livecards  │
 ╰──────────────────────────────────────────────────────────────────╯
 ```
 
@@ -139,7 +139,7 @@ The first must print the player tags and one `twitter:card`. The second must pri
 
 Then check it with clickd:
 
-- `mttr_check({ kind: "x_card", url: "<share-address>" })`, or with no key `https://clickd.com/twitter-card-validator?url=<share-address>`: the tags against X's archived card docs, the picture's real size, whether `robots.txt` keeps Twitterbot out, and whether the player route's headers let each of X's hosts frame it. It fetches as mttr, not as Twitterbot, so the two curl lines above still count.
+- `clickd_check({ kind: "x_card", url: "<share-address>" })`, or with no key `https://clickd.com/twitter-card-validator?url=<share-address>`: the tags against X's archived card docs, the picture's real size, whether `robots.txt` keeps Twitterbot out, and whether the player route's headers let each of X's hosts frame it. It fetches as mttr, not as Twitterbot, so the two curl lines above still count.
 - `https://clickd.com/og-image-checker?url=<share-address>` shows the share tags clickd is served, the image and what is wrong with them.
 - `https://clickd.com/website-speed-test?url=<player-address>` shows how fast the route answers and how much it weighs, which is what someone opening the post waits for.
 
@@ -160,7 +160,7 @@ X keeps the card it built for an address, and its archived guide says it reads t
 ```
 Route: https://<domain>/<path>, card: player, frame <width> by <height>.
 Crawler: <player tags and one twitter:card | what it got instead>. Framing: <frame-ancestors for X only, no X-Frame-Options | what is wrong>.
-mttr_check x_card: <what it found>.
+clickd_check x_card: <what it found>.
 Embed mode: scrolling <inner | fits>, links in new tabs, overlays hidden.
 Checked in a post on x.com: <yes | not yet>. In X's apps: <picture, page on tap | not yet | fails: how>.
 X describes the player card for video, audio and media, its policy reserves it for linear audio and video, and it may stop showing a card that is not one.

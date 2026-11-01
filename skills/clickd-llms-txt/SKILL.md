@@ -3,7 +3,7 @@ name: clickd-llms-txt
 description: Adds a /llms.txt to a website, a plain text outline of the whole site for AI assistants, built from the site's own pages and facts so it cannot go stale, with tests that catch a missing page, and checks it with clickd. Use when asked to add, fix or update llms.txt, to outline a site for AI assistants or agents, or when clickd reports the llms-txt finding. Works for one site or a network of sites served from one app. Not a way to rank, as its effect on AI visibility is unproven.
 metadata:
   author: subinternal
-  version: "2.2.0"
+  version: "2.3.0"
 ---
 
 <!-- subinternal:header -->
@@ -14,7 +14,7 @@ metadata:
 │    ▄ █ █    llms.txt                                            │
 │  ▄ █ █ █                                                        │
 │                                                                 │
-│  skill 2.2.0  ·  by subinternal  ·  clickd.com/skills/llms-txt  │
+│  skill 2.3.0  ·  by subinternal  ·  clickd.com/skills/llms-txt  │
 ╰─────────────────────────────────────────────────────────────────╯
 ```
 
@@ -142,7 +142,7 @@ Ship as the person allows, then check the live file.
 
 - First by hand: `curl -sI https://<domain>/llms.txt` answers `200` with `content-type: text/plain`, and no `location:` header. The other checks to run are in [references/verify.md](references/verify.md).
 - With no key: `https://clickd.com/ai-crawler-checker?url=<domain>` says whether `/llms.txt` is there, beside which AI crawlers `robots.txt` lets in.
-- Over MCP: `mttr_rescan({ site, reason: "added llms.txt" })`, then `mttr_changes({ site, job })` with the job it returns, every minute or two until it says done; the same reply then carries the changes. The `llms-txt` finding should be gone. clickd counts the file when it answers 200 with text that is not an HTML page; the rest of this skill is what makes it worth reading.
+- Over MCP: `clickd_rescan({ site, reason: "added llms.txt" })`, then `clickd_changes({ site, job })` with the job it returns, every minute or two until it says done; the same reply then carries the changes. The `llms-txt` finding should be gone. clickd counts the file when it answers 200 with text that is not an HTML page; the rest of this skill is what makes it worth reading.
 - Then open the file and read it top to bottom as if you knew nothing about the business. Better, give only the file to a fresh agent and ask it three questions a customer would ask: where the business works, how to get a price, and what it does not do. If a fact is wrong or a section is confusing, fix the source, not the file.
 
 If the finding stays, the troubleshooting table in [references/verify.md](references/verify.md) lists each cause: an HTML page served at the address (a single-page app's fallback is the usual one), a redirect to a login, a cache holding an old 404, or a firewall that answers crawlers differently.

@@ -2,16 +2,16 @@
 
 A campaign is only as good as its search. Pick one the page can plausibly win, read what the people typing it want from the results Google already shows, and set an aim the evidence supports. Do this before the first gate; a wrong search wastes every gate after it.
 
-`mttr_queries` and `mttr_similar` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
+`clickd_queries` and `clickd_similar` are listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see them. Every tool name answers a call at either address.
 
 ## Where candidate searches come from
 
 In order of how much they can be trusted:
 
-1. **Search Console, for this page.** With clickd and a claimed site, `mttr_queries({ site, page: "<the page's full address>" })` lists the searches the page was shown for, with clicks, impressions and average place. Without clickd, the person's Performance report, filtered to the page ([measuring with Search Console](search-console.md)).
-2. **Searches close to the top, across the site.** `mttr_queries({ site, show: "near" })` lists searches at places 4 to 20. A page already on page one or two for a search has shown Google it is relevant; those are the cheapest campaigns.
+1. **Search Console, for this page.** With clickd and a claimed site, `clickd_queries({ site, page: "<the page's full address>" })` lists the searches the page was shown for, with clicks, impressions and average place. Without clickd, the person's Performance report, filtered to the page ([measuring with Search Console](search-console.md)).
+2. **Searches close to the top, across the site.** `clickd_queries({ site, show: "near" })` lists searches at places 4 to 20. A page already on page one or two for a search has shown Google it is relevant; those are the cheapest campaigns.
 3. **The person's own words.** What customers say on the phone, in emails, in reviews. Useful when the site is new to Search Console, but unproven: say so in the log.
-4. **Searches nothing answers.** `mttr_queries({ site, show: "unanswered" })` lists searches no passage on the site comes close to. These are pages to write, not pages to rank: each is a campaign for a page that does not exist yet, and this skill starts once it does.
+4. **Searches nothing answers.** `clickd_queries({ site, show: "unanswered" })` lists searches no passage on the site comes close to. These are pages to write, not pages to rank: each is a campaign for a page that does not exist yet, and this skill starts once it does.
 
 Never pick a search because a tool says it has volume. Pick it because the page answers it and people who type it would be glad to land there.
 
@@ -19,8 +19,8 @@ Never pick a search because a tool says it has volume. Pick it because the page 
 
 Before committing, check that the page you were given is the one the site should rank:
 
-- `mttr_queries({ site, show: "better" })` lists searches where another page on the site reads closer to the search than the one Google shows. If the campaign's search is on it, the person may be pushing the wrong page. Show them both and let them choose.
-- `mttr_similar({ site, path })` lists the pages that read most like this one. Two pages that mean nearly the same thing can split one search between them. If one exists, the campaign either picks one page and makes the other link to it (and differ from it), or the person merges them. Write which in the log.
+- `clickd_queries({ site, show: "better" })` lists searches where another page on the site reads closer to the search than the one Google shows. If the campaign's search is on it, the person may be pushing the wrong page. Show them both and let them choose.
+- `clickd_similar({ site, path })` lists the pages that read most like this one. Two pages that mean nearly the same thing can split one search between them. If one exists, the campaign either picks one page and makes the other link to it (and differ from it), or the person merges them. Write which in the log.
 - In Search Console, filter to the query alone and look at the Pages tab. If Google shows several of the site's pages for it, note which and how often.
 
 ## Reading the intent from the live results

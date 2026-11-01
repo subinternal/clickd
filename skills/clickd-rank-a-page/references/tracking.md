@@ -2,11 +2,11 @@
 
 Keep one log for each campaign, and write it the same way every time, so the person can read it at a glance and another agent can pick it up.
 
-`mttr_gaps` is listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see it. Every tool name answers a call at either address.
+`clickd_gaps` is listed at `https://clickd.com/mcp/all`: connect that address in place of `/mcp` to see it. Every tool name answers a call at either address.
 
 ## With clickd
 
-Every change goes to `mttr_log_work({ site, step, did })`: `planned` before you start on a gate, `changed` once it ships, `checked` once a read proved it and the gate opened, `stuck` when a read did not and why. `mttr_rescan` reads the site again and `mttr_changes` says what the read moved. Keep `campaign.md` as well: it is the one place the aim, the five gates, the status and the place over time sit together.
+Every change goes to `clickd_log_work({ site, step, did })`: `planned` before you start on a gate, `changed` once it ships, `checked` once a read proved it and the gate opened, `stuck` when a read did not and why. `clickd_rescan` reads the site again and `clickd_changes` says what the read moved. Keep `campaign.md` as well: it is the one place the aim, the five gates, the status and the place over time sit together.
 
 ## Without clickd
 
@@ -73,7 +73,7 @@ Told the person: changes reach Google over days to weeks; no place or date is pr
 |---|---|---|---|
 | 1. Clean up | open | 2026-11-09 | clickd's read on 2026-11-09: no access finding on the page, no broken link to it (slipped 2026-11-02, reopened) |
 | 2. One intent | open | 2026-10-25 | clickd's read on 2026-10-25: title and first heading carry the search; 9 of the page's 10 top searches are to buy |
-| 3. Substance | open | 2026-11-09 | clickd's read on 2026-11-09: passes every content rule checked on it; mttr_gaps lists 1 subject for it, down from 4 |
+| 3. Substance | open | 2026-11-09 | clickd's read on 2026-11-09: passes every content rule checked on it; clickd_gaps lists 1 subject for it, down from 4 |
 | 4. Links inside | open | 2026-11-16 | clickd's read on 2026-11-16: 4 of the 10 most linked pages link here in text, up from 1 |
 | 5. Links from outside | closed | | (none yet: 3 linking sites, among those clickd has read, against the middle rival's 7) |
 
