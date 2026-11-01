@@ -2,6 +2,10 @@
 
 Versions follow semantic versioning: a major version changes what the skill asks of the person or the agent, a minor one adds or tightens steps, a patch corrects wording. The version is in `SKILL.md` under `metadata`, as the Agent Skills format keeps anything it does not define.
 
+## 2.1.0 (2026-10-31)
+
+- clickd.com: every address is clickd.com now, and clickd's MCP server is at `https://clickd.com/mcp`. Anything set up on mttr.si keeps working there: the MCP server, the API and OAuth still answer on it.
+
 ## 2.0.0 (2026-10-31)
 
 - The skill is renamed clickd, from mttr. Install it with `npx skills add subinternal/clickd`, or in Claude Code with `/plugin install clickd --marketplace subinternal/clickd`. The MCP server's key in a client's config is `clickd`, and the key is read from `CLICKD_KEY`.

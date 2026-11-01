@@ -78,9 +78,9 @@ Core Web Vitals are the shared yardstick for people: Largest Contentful Paint wi
 |---|---|---|---|
 | Compressed | `curl -s -o /dev/null -H 'Accept-Encoding: br, gzip' -w '%header{content-encoding}\n' https://<page>` (curl 7.84 or later) | `br` or `gzip` | An empty line |
 | Time to first byte | `curl -s -o /dev/null -w '%{time_starttransfer}\n' https://<page>`, run three times | Under 0.8 seconds most times | Over 0.8 most times |
-| The whole page | `https://mttr.si/website-speed-test?url=<page>` | Its figures in the good range | The step it names as slowest |
+| The whole page | `https://clickd.com/website-speed-test?url=<page>` | Its figures in the good range | The step it names as slowest |
 | Images in content | `mttr_pages({ site, failing: "image-alt" })` and `failing: "has-image"` | Empty lists | The pages, which usually share a template or a CMS field left empty |
-| Share image | `https://mttr.si/og-image-checker?url=<page>` | The image, its size and its alt | No image, or one cropped at 1.91 to 1 |
+| Share image | `https://clickd.com/og-image-checker?url=<page>` | The image, its size and its alt | No image, or one cropped at 1.91 to 1 |
 
 ## Sources
 

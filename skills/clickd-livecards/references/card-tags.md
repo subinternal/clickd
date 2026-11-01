@@ -122,7 +122,7 @@ Write the tags in the route's own `<head>` with whatever the stack uses for per-
 curl -s -A "Twitterbot/1.0" https://example.com/in-post | grep -o '<meta[^>]*twitter:[^>]*>'
 ```
 
-Pass: one `twitter:card` of `player`, a `twitter:site`, a `twitter:title`, an `https` `twitter:player` with whole-number width and height, an `https` `twitter:image`, and no `twitter:player:stream`. Then `mttr_x_card({ url })`, or `https://mttr.si/twitter-card-validator?url=<share-address>` with no key, checks the same tags, the picture's real size and the player route's framing headers.
+Pass: one `twitter:card` of `player`, a `twitter:site`, a `twitter:title`, an `https` `twitter:player` with whole-number width and height, an `https` `twitter:image`, and no `twitter:player:stream`. Then `mttr_x_card({ url })`, or `https://clickd.com/twitter-card-validator?url=<share-address>` with no key, checks the same tags, the picture's real size and the player route's framing headers.
 
 ## Sources
 

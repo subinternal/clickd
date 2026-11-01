@@ -96,7 +96,7 @@ X's policy refuses a card whose page raises a mixed content warning at any point
 The frame loads when someone opens the post, and the page is all they wait for. X's crawler also stops reading a page over 2 MB.
 
 - Ship only what the route uses: no site-wide bundles, analytics beyond one, or fonts the frame does not show.
-- `https://mttr.si/website-speed-test?url=<player-address>` gives the route's time and weight.
+- `https://clickd.com/website-speed-test?url=<player-address>` gives the route's time and weight.
 
 ## A whole route, as an example
 

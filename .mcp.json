@@ -2,7 +2,7 @@
   "mcpServers": {
     "clickd": {
       "type": "http",
-      "url": "https://mttr.si/mcp",
+      "url": "https://clickd.com/mcp",
       "headers": { "Authorization": "Bearer ${CLICKD_KEY}" }
     }
   }

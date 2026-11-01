@@ -189,7 +189,7 @@ const html = `<script type="application/ld+json">${JSON.stringify(graph).replace
 ```
 
 - A field the page leaves empty is left out of the object, not written as `""`.
-- `mttr_schema_create({ type: "Service", fields: { ... } })`, or the free schema creator at `https://mttr.si/schema-generator`, gives a block from the fields given, with the required ones left empty for you to fill, never made up.
+- `mttr_schema_create({ type: "Service", fields: { ... } })`, or the free schema creator at `https://clickd.com/schema-generator`, gives a block from the fields given, with the required ones left empty for you to fill, never made up.
 
 ## What breaks it
 
@@ -210,7 +210,7 @@ const html = `<script type="application/ld+json">${JSON.stringify(graph).replace
 
 ## Check it
 
-- `https://mttr.si/schema-checker?url=<page>` reads every block on one page, or a block pasted in.
+- `https://clickd.com/schema-checker?url=<page>` reads every block on one page, or a block pasted in.
 - Over MCP, `mttr_page({ site, path })` shows the structured data rules a page fails.
 - Google's Rich Results Test, https://search.google.com/test/rich-results, is Google's own read of one page.
 - From the command line, every block the server sends, parsed. Save the page first, then read the file:

@@ -157,7 +157,7 @@ The heading is the question a reader asks. The paragraph right under it answers 
 ## Contrast and speed
 
 - Text at least 4.5 to 1 against its background, and large text at least 3 to 1, in every theme. Measure it; do not judge it by eye. WCAG 2.2, success criterion 1.4.3: https://www.w3.org/TR/WCAG22/#contrast-minimum
-- HTML compressed with gzip or Brotli, pages cached at the server or CDN, scripts deferred, fonts that do not hold the text back. Google's Core Web Vitals, https://web.dev/articles/vitals, are the shared yardstick. Check one page at `https://mttr.si/website-speed-test?url=<page>`.
+- HTML compressed with gzip or Brotli, pages cached at the server or CDN, scripts deferred, fonts that do not hold the text back. Google's Core Web Vitals, https://web.dev/articles/vitals, are the shared yardstick. Check one page at `https://clickd.com/website-speed-test?url=<page>`.
 - Rules: `compressed`, `quick-to-answer`.
 
 ## Sources

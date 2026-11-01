@@ -87,8 +87,8 @@ After: one `h1`, levels in order, the answer right under its question.
 
 | What | How | Pass | Fail |
 |---|---|---|---|
-| One `h1` and the order | `https://mttr.si/h1-checker?url=<page>` | One `h1`, no level skipped going down | Two `h1`, or an `h2` then an `h4` |
-| What a crawler gets | `https://mttr.si/agent-view?url=<page>`, or `mttr_agent_view({ url })` | The main text, headings in order, the answer under the first question | A shell a script fills in, or the menu as the text |
+| One `h1` and the order | `https://clickd.com/h1-checker?url=<page>` | One `h1`, no level skipped going down | Two `h1`, or an `h2` then an `h4` |
+| What a crawler gets | `https://clickd.com/agent-view?url=<page>`, or `mttr_agent_view({ url })` | The main text, headings in order, the answer under the first question | A shell a script fills in, or the menu as the text |
 | `h1` count in the raw HTML | `curl -s <page> \| grep -o '<h1' \| wc -l` | `1` | `0`, or `2` and more |
 | Every template at once | `mttr_pages({ site, failing: "one-h1" })` | An empty list | Pages of one template, which points at that template |
 

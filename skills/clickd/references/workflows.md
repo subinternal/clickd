@@ -21,11 +21,11 @@ On a claimed site, open with `mttr_queue()` and `mttr_todo()` instead of step 2:
 For a page you are writing or changing. clickd reads whole sites, so a page not yet live is checked with the free tools against a preview address, and in full once it is live.
 
 1. Before it ships, on a public preview address:
-   - `https://mttr.si/h1-checker?url=<page>`: one `h1` and the outline below it.
-   - `https://mttr.si/schema-checker?url=<page>`: every structured data block, and whether it parses.
-   - `https://mttr.si/og-image-checker?url=<page>`: the share tags and the size of the share image.
-   - `https://mttr.si/redirect-checker?url=<page>`: every hop to the final address.
-   - On a product page, `mttr_product_check({ url })`, or `https://mttr.si/tools/schema-markup-checker.json?url=<page>` with no key.
+   - `https://clickd.com/h1-checker?url=<page>`: one `h1` and the outline below it.
+   - `https://clickd.com/schema-checker?url=<page>`: every structured data block, and whether it parses.
+   - `https://clickd.com/og-image-checker?url=<page>`: the share tags and the size of the share image.
+   - `https://clickd.com/redirect-checker?url=<page>`: every hop to the final address.
+   - On a product page, `mttr_product_check({ url })`, or `https://clickd.com/tools/schema-markup-checker.json?url=<page>` with no key.
 2. Once it is live, `mttr_rescan({ site, reason: "new page <path>" })`, `mttr_job({ id })`, then `mttr_page({ site, path })`: every rule the page fails, with the fix for each, and the pages that link to it.
 3. If no page links to it, link it from the text of a related page and from its hub. `mttr_page` lists its links in.
 
@@ -53,9 +53,9 @@ For a site already worked on, so a fix that slipped back is caught.
 
 ## With no key at all
 
-1. Open `https://mttr.si/report/<domain>`. If there is no report, or it is old, open `https://mttr.si/read?domain=<domain>`. It puts the site in line and sends you to `/reading/<token>`, which shows the read as it happens and ends on the report.
-2. The report lists the fixes worth the most, each with its pages. The rulebook at `https://mttr.si/rulebook` says what each rule means.
-3. Check single pages with the free tools at `https://mttr.si/tools`.
+1. Open `https://clickd.com/report/<domain>`. If there is no report, or it is old, open `https://clickd.com/read?domain=<domain>`. It puts the site in line and sends you to `/reading/<token>`, which shows the read as it happens and ends on the report.
+2. The report lists the fixes worth the most, each with its pages. The rulebook at `https://clickd.com/rulebook` says what each rule means.
+3. Check single pages with the free tools at `https://clickd.com/tools`.
 4. Fix and ship as the person allows, then ask for a fresh read the same way. A site is read at most once every ten minutes.
 5. Say in your report that you worked without a key, so nothing was logged and no proposal was sent.
 

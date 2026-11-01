@@ -7,7 +7,7 @@ When a call fails, clickd answers in words that say why, and most say what to do
 Before you change any settings, see what the server says. clickd's MCP endpoint takes one JSON-RPC message in each POST, as the MCP transport spec sets out:
 
 ```
-curl -s https://mttr.si/mcp \
+curl -s https://clickd.com/mcp \
   -H "Content-Type: application/json" \
   -H "Accept: application/json, text/event-stream" \
   -H "Authorization: Bearer $CLICKD_KEY" \
@@ -15,7 +15,7 @@ curl -s https://mttr.si/mcp \
 ```
 
 - **A list of tools** means the server is reachable. With no key the list still comes back: a keyless agent may list the tools and call `mttr_signup`, and nothing else.
-- **Then a call that needs a key:** `"method":"tools/call","params":{"name":"mttr_rules","arguments":{}}`. A rulebook means the key works. "mttr needs a key for that" means it does not (see below).
+- **Then a call that needs a key:** `"method":"tools/call","params":{"name":"mttr_rules","arguments":{}}`. A rulebook means the key works. "clickd needs a key for that" means it does not (see below).
 
 Never paste the key into a file, a commit or a log to test this. Read it from the environment, as above.
 
@@ -23,18 +23,18 @@ Never paste the key into a file, a commit or a log to test this. Read it from th
 
 | What you see | Likely cause | What to do |
 |---|---|---|
-| "mttr needs a key for that. Sign your person up first with mttr_signup, then connect again with the key it gives." | No key was sent, or the key was not recognized. A mistyped, cut-off or rotated key is treated as no key | Check the header reads `Authorization: Bearer mk_` and then the whole key. If the person rotated it, they need the new one. With no key at all, `mttr_signup({ email })` with their leave |
+| "clickd needs a key for that. Sign your person up first with mttr_signup, then connect again with the key it gives." | No key was sent, or the key was not recognized. A mistyped, cut-off or rotated key is treated as no key | Check the header reads `Authorization: Bearer mk_` and then the whole key. If the person rotated it, they need the new one. With no key at all, `mttr_signup({ email })` with their leave |
 | HTTP 401 "That access token has expired or was revoked. Refresh it, or connect again." | A sign-in token (not a key) lapsed | Let the client refresh it, or connect again |
-| HTTP 401 "Sign in to mttr to use it." | The client connected with no credentials where sign-in is asked for | Connect with the person's key as a bearer token |
+| HTTP 401 "Sign in to clickd to use it." | The client connected with no credentials where sign-in is asked for | Connect with the person's key as a bearer token |
 | "This key already has an account." | `mttr_signup` was called with a working key | Nothing to do: the key is connected |
 | "Too many sign-ups from here." | Several sign-ups from one address in a short time | Wait the minutes it says |
 | "That part of a site is kept for the key that claimed it." | A tool for claimed sites, called on a site this key has not claimed | `mttr_claim({ site })`, put up the record or file, then `mttr_claim_check({ site })`. Or keep to the public tools |
 | "This key reaches only the sites claimed with it." | A call that reads across every site, which a person's key may not make | Use the calls for one site |
-| "mttr has no public report of that site yet." | clickd never read it, or its read was a draft or was refused | `mttr_rescan({ site, reason: "first read" })`, then `mttr_job({ id })` |
+| "clickd has no public report of that site yet." | clickd never read it, or its read was a draft or was refused | `mttr_rescan({ site, reason: "first read" })`, then `mttr_job({ id })` |
 | "example.com was read too recently. Ask again after the time in allowedAt." | A read in the last ten minutes | Wait until `allowedAt`. Use the read you have meanwhile |
 | "That is enough new reads of sites not yet claimed for this hour." | The hourly allowance for reading unclaimed sites is spent | Wait an hour, or claim the site: a claimed site is read whenever asked |
-| "mttr cannot read example.com: ..." | The address is not public, such as a local or private network address | clickd reads public addresses only. Check a public preview instead |
-| "example.com was removed from mttr and is not read." | The site was taken out of clickd, as its owner can ask | Do not try to read it another way. Tell the person |
+| "clickd cannot read example.com: ..." | The address is not public, such as a local or private network address | clickd reads public addresses only. Check a public preview instead |
+| "example.com was removed from clickd and is not read." | The site was taken out of clickd, as its owner can ask | Do not try to read it another way. Tell the person |
 | "No record or file with mttr-verify=... was found for example.com yet." | The claim's DNS record or file is not visible yet | Check the record is a TXT record at the domain or at `_mttr.` before it, or the file is at `/.well-known/mttr.txt`. A new record can take a few minutes |
 | "... checks are limited to the free tools' hourly allowance for each key." | Many one-page checks in an hour | Wait, or check one page per template rather than every page |
 | "That is 20 proposals for example.com in the last hour." | Too many proposals | Put related changes in one proposal and try again in the minutes it says |

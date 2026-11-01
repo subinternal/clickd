@@ -115,7 +115,7 @@ Sitemap: https://example.com/sitemap.xml
 | Clicks from home | `mttr_structure({ site })`, or `mttr_map({ site, view: "links" })` | Every section within three clicks | A section at four or more, or pages no link leads to |
 | Links in content | `mttr_pages({ site, failing: "linked-in-context" })` | An empty list | The pages to link to from a related page's text |
 | Redirected and broken links | `mttr_links({ site })`, `mttr_pages({ site, failing: "direct-links" })` | Nothing broken, nothing reached through a redirect | Each link to fix, with the page it is on |
-| One page's redirects | `https://mttr.si/redirect-checker?url=<page>` | One hop or none | A chain, or a temporary redirect for a page that moved for good |
+| One page's redirects | `https://clickd.com/redirect-checker?url=<page>` | One hop or none | A chain, or a temporary redirect for a page that moved for good |
 | The sitemap | `curl -s https://<domain>/sitemap.xml \| grep -c '<loc>'` against the count of pages that should rank | The same number | More (pages that redirect or are kept out) or fewer |
 
 ## Sources

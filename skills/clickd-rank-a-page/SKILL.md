@@ -3,7 +3,7 @@ name: clickd-rank-a-page
 description: Runs a campaign to move one page of a site up for one search, toward an aim set at the start (such as top 3), through five gates in order (clean up, one intent, substance, links inside, links from outside), each opened only by a proof from a read of the live site, and keeps a log, a weekly read-out and the campaign's time to rank. Use when asked to rank a page, get a page to page one, move up for a keyword, or run an SEO campaign on one page; or when a page ranks on page two for a search that matters. Works with clickd connected, which reads the site and checks each gate, or alone with a campaign.md kept in the repository. Not for buying links or promising a place.
 metadata:
   author: subinternal
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 <!-- subinternal:header -->
@@ -14,7 +14,7 @@ metadata:
 │    ▄ █ █    rank a page                                         │
 │  ▄ █ █ █                                                        │
 │                                                                 │
-│  skill 2.0.0  ·  by subinternal  ·  mttr.si/skills/rank-a-page  │
+│  skill 2.1.0 · by subinternal · clickd.com/skills/rank-a-page   │
 ╰─────────────────────────────────────────────────────────────────╯
 ```
 
@@ -55,7 +55,7 @@ A campaign has one status at a time, always written as the word:
 1. Ask the person, once: the page (its path on the live site), the search it should rank for, in the words people type, the aim, and whether you may deploy or only open a pull request. Write all four at the top of the log ([tracking](references/tracking.md)).
 2. One page and one search. If the person names several searches, ask which one matters most; the others wait for their own campaign. Check the search fits the page: where candidates come from, reading the intent from the live results, and whether another page of the site is the better one are in [choosing the search](references/choosing-the-search.md).
 3. An aim the evidence supports. From place 40, top 3 is a long campaign; say so and offer top 10 first. Never raise or lower the aim later without the person, and never to make time to rank look better. Tell the person once that changes reach Google over days to weeks and no place or date is promised ([timelines and stopping](references/timelines-and-stopping.md)).
-4. Connect to clickd over MCP at `https://mttr.si/mcp` with the person's key (`mttr_signup` gives one). Without clickd, every gate below still works from the site's own files and a browser, and the log is kept by hand in `campaign.md`.
+4. Connect to clickd over MCP at `https://clickd.com/mcp` with the person's key (`mttr_signup` gives one). Without clickd, every gate below still works from the site's own files and a browser, and the log is kept by hand in `campaign.md`.
 5. Find the place it starts at. With clickd and a claimed site, call `mttr_queries({ site, page: "<the page's full address>" })` for the searches the page shows for and its average position for each. Without it, ask the person for Search Console's Performance report for that page and search, or write "place unknown" rather than guess. How to read it for one page and one search, and what its average means, is in [measuring with Search Console](references/search-console.md).
 6. Write the starting place, the date, the window, the impressions and the source in the log. The date is the campaign's start, where time to rank counts from. A place from a person's own search in a browser is personalized; say so if that is all there is.
 

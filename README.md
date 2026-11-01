@@ -3,13 +3,13 @@
 <p align="center">
 <a href="https://agentskills.io/specification"><img alt="Agent Skills format" src="https://img.shields.io/badge/format-Agent%20Skills-f78b77"></a>
 <a href="#the-skills"><img alt="5 skills" src="https://img.shields.io/badge/skills-5-f78b77"></a>
-<a href="https://mttr.si/agents"><img alt="Works in Claude Code, Codex and Cursor" src="https://img.shields.io/badge/works%20in-Claude%20Code%20%7C%20Codex%20%7C%20Cursor-2b2d31"></a>
+<a href="https://clickd.com/agents"><img alt="Works in Claude Code, Codex and Cursor" src="https://img.shields.io/badge/works%20in-Claude%20Code%20%7C%20Codex%20%7C%20Cursor-2b2d31"></a>
 <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-2b2d31"></a>
 </p>
 
 <p align="center"><b>Agent skills that read your site the way search engines and AI assistants do,<br>fix it in your own code, and read it again to prove what moved.</b></p>
 
-<p align="center"><a href="https://mttr.si">Reports</a> &nbsp;&nbsp; <a href="https://mttr.si/leaderboard">Leaderboard</a> &nbsp;&nbsp; <a href="https://mttr.si/tools">Free tools</a> &nbsp;&nbsp; <a href="https://mttr.si/docs/reference">API and MCP</a></p>
+<p align="center"><a href="https://clickd.com">Reports</a> &nbsp;&nbsp; <a href="https://clickd.com/leaderboard">Leaderboard</a> &nbsp;&nbsp; <a href="https://clickd.com/tools">Free tools</a> &nbsp;&nbsp; <a href="https://clickd.com/docs/reference">API and MCP</a></p>
 
 ## Quick start
 
@@ -33,7 +33,7 @@ In Claude Code you can add them as a plugin instead, with clickd's MCP server wi
 
 That's it. The skills work from clickd's free public reports with nothing else to set up. [Connect over MCP](#connect-your-agent-optional-free) later if you want the full brief and a re-read on demand.
 
-clickd's server, reports and MCP endpoint run at mttr.si for now, so the links here go there.
+Set up on mttr.si before the move? It keeps working: the MCP server, the API and OAuth still answer there.
 
 ## Why
 
@@ -79,11 +79,11 @@ clickd does the reading and the grading. Your agent does the fixing, in your rep
 
 | Skill | What it does | Version |
 |---|---|---|
-| **[clickd](skills/clickd)** | **Start here.** Checks your site and fixes it, worth the most first. For a shop, it also gets your product pages read right by Google's merchant listings and shopping agents, field by field ([Shop ready](skills/clickd/references/shop-ready.md), built in). | `2.0.0` |
-| [Page system](skills/clickd-page-system) | Builds your page templates so every page reads well for search and assistants. | `2.0.0` |
-| [llms.txt](skills/clickd-llms-txt) | Writes a `/llms.txt` from your own pages, with tests so it never goes stale. | `2.0.0` |
-| [Livecards](skills/clickd-livecards) | Makes a page run inside a post on X: a demo, a tool or a short landing page. | `2.0.0` |
-| [Rank a page](skills/clickd-rank-a-page) | Moves one page up for one search, step by step, with proof at each one. | `2.0.0` |
+| **[clickd](skills/clickd)** | **Start here.** Checks your site and fixes it, worth the most first. For a shop, it also gets your product pages read right by Google's merchant listings and shopping agents, field by field ([Shop ready](skills/clickd/references/shop-ready.md), built in). | `2.1.0` |
+| [Page system](skills/clickd-page-system) | Builds your page templates so every page reads well for search and assistants. | `2.1.0` |
+| [llms.txt](skills/clickd-llms-txt) | Writes a `/llms.txt` from your own pages, with tests so it never goes stale. | `2.1.0` |
+| [Livecards](skills/clickd-livecards) | Makes a page run inside a post on X: a demo, a tool or a short landing page. | `2.1.0` |
+| [Rank a page](skills/clickd-rank-a-page) | Moves one page up for one search, step by step, with proof at each one. | `2.1.0` |
 
 Each skill is a folder in the open [Agent Skills](https://agentskills.io/specification) format: a `SKILL.md`, the references it links, and its own changelog.
 
@@ -114,28 +114,28 @@ Copy a skill's folder to where your agent loads skills from:
 
 ## Connect your agent (optional, free)
 
-Connected over MCP, your agent gets the full brief for a site, its history, the next page worth writing, and a re-read whenever it asks for one. Get a free key at [mttr.si/agents](https://mttr.si/agents), then in Claude Code:
+Connected over MCP, your agent gets the full brief for a site, its history, the next page worth writing, and a re-read whenever it asks for one. Get a free key at [clickd.com/agents](https://clickd.com/agents), then in Claude Code:
 
 ```sh
-claude mcp add --transport http clickd https://mttr.si/mcp \
+claude mcp add --transport http clickd https://clickd.com/mcp \
   --header "Authorization: Bearer $CLICKD_KEY"
 ```
 
-Cursor, VS Code, Codex and the rest are on [mttr.si/agents](https://mttr.si/agents#connect).
+Cursor, VS Code, Codex and the rest are on [clickd.com/agents](https://clickd.com/agents#connect).
 
 ## What you won't get
 
 - **Promises.** A score from clickd says a site's pages are well formed for crawlers and assistants. It doesn't say an assistant will cite the site, and none of these skills promises rankings or citations. Assistants change their answers day to day; anyone who guarantees you a spot in ChatGPT is selling something.
-- **A bot loose on your site.** clickd reads public pages only, under its own crawler name (`mttr`, for now), and obeys `robots.txt`. Your agent makes every change in your own code, and you approve each one or review the pull request.
+- **A bot loose on your site.** clickd reads public pages only, under its own crawler name, `mttr`, and obeys `robots.txt`. Your agent makes every change in your own code, and you approve each one or review the pull request.
 - **Busywork.** Fixes come in order of what they're worth, so the first hour does the most good.
 
 ## See it first
 
-<p align="center"><img src="docs/report-card.png" alt="A clickd report card for mttr.si: A+, 100 of 100, top 0.1%, each of the four stages A+" width="640"></p>
+<p align="center"><img src="docs/report-card.png" alt="A clickd report card for clickd.com: A+, 100 of 100, top 0.1%, each of the four stages A+" width="640"></p>
 
-- **[Read your own site](https://mttr.si),** free, in about a minute. Every report leads to its Agent View: the site as an AI agent reads it, page by page.
-- **[The leaderboard](https://mttr.si/leaderboard):** every site clickd has read, ranked, and the board for your line of work.
-- **[Free tools](https://mttr.si/tools):** one page at a time, with nothing to install: [headings](https://mttr.si/h1-checker), [schema](https://mttr.si/schema-checker), [AI crawlers](https://mttr.si/ai-crawler-checker), [share cards](https://mttr.si/og-image-checker), [speed](https://mttr.si/website-speed-test) and more.
+- **[Read your own site](https://clickd.com),** free, in about a minute. Every report leads to its Agent View: the site as an AI agent reads it, page by page.
+- **[The leaderboard](https://clickd.com/leaderboard):** every site clickd has read, ranked, and the board for your line of work.
+- **[Free tools](https://clickd.com/tools):** one page at a time, with nothing to install: [headings](https://clickd.com/h1-checker), [schema](https://clickd.com/schema-checker), [AI crawlers](https://clickd.com/ai-crawler-checker), [share cards](https://clickd.com/og-image-checker), [speed](https://clickd.com/website-speed-test) and more.
 
 ## Moved from subinternal/mttr
 

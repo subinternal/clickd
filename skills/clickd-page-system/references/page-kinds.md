@@ -2,7 +2,7 @@
 
 One template for each kind of page, as the outline its HTML should have. The words in angle brackets come from the page's own data. Keep the site's own classes, components and look; these show only what is underneath.
 
-Each kind lists the clickd rules that check it. `mttr_rules()` or `https://mttr.si/rulebook` gives each rule's current wording.
+Each kind lists the clickd rules that check it. `mttr_rules()` or `https://clickd.com/rulebook` gives each rule's current wording.
 
 ## How clickd files a page
 

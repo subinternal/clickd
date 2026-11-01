@@ -9,7 +9,7 @@ Work the seven steps in order. Do not change a file before step 4.
 ## Before you start
 
 1. Ask the person two things, once: the shop's live domain, and whether you may deploy or only open a pull request. Write both answers down.
-2. Connect to clickd over MCP at `https://mttr.si/mcp` with the person's key (`mttr_signup` gives one). Without MCP, the same product check answers at `https://mttr.si/tools/schema-markup-checker.json?url=<product page>`, within a free allowance of 200 checks an hour, and nothing else in this skill is reachable.
+2. Connect to clickd over MCP at `https://clickd.com/mcp` with the person's key (`mttr_signup` gives one). Without MCP, the same product check answers at `https://clickd.com/tools/schema-markup-checker.json?url=<product page>`, within a free allowance of 200 checks an hour, and nothing else in this skill is reachable.
 3. Over MCP, call `mttr_proposals({ site })`. Its answer says whether the site is set to `approve` or `automatic`. If it fails because the site is not claimed, offer `mttr_claim({ site })`, which gives a DNS record or a file to prove the site is theirs, then `mttr_claim_check({ site })`.
 4. Decide now how the change will ship, and do not revisit it:
 

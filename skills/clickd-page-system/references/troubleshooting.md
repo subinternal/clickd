@@ -38,7 +38,7 @@ The fix is in place and clickd still reports the rule. Most often the change did
 
 ## Traps that look like success
 
-- The browser's inspector shows the fix, but the server's HTML does not: the inspector shows the page after scripts ran. Check with `curl` or `https://mttr.si/agent-view?url=<page>`.
+- The browser's inspector shows the fix, but the server's HTML does not: the inspector shows the page after scripts ran. Check with `curl` or `https://clickd.com/agent-view?url=<page>`.
 - The fix shows on the page you tested and not on others: a CDN cache or a static build that was not rebuilt. Purge or rebuild, then read again.
 - A score went up and a page vanished: a page that now redirects or answers 404 has dropped out of the read. `mttr_changes({ site })` lists pages removed.
 - Every rule passes. The pages are well formed; that does not say any assistant cites the site.
