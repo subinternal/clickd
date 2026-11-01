@@ -16,7 +16,7 @@ Two things hold for every reply. A reply that carries a score carries `caveat`, 
 
 ## No key needed
 
-The one call that works before clickd has a key for the person.
+The call that gets the person a key. Over MCP the rulebook, the leaderboard, a site’s public report and the free checks answer with no key too, 60 calls an hour from one address.
 
 ### `mttr_signup`
 
