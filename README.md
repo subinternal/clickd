@@ -40,14 +40,14 @@ Set up on mttr.si before the move? It keeps working: the MCP server, the API and
 
 Your site has two audiences now: people, and the machines that answer for them. Google still crawls it. ChatGPT, Gemini, Claude and Perplexity read it too, and then decide whether to quote you or someone else.
 
-Most sites are quietly failing the second audience. clickd has read almost 1M sites so far. From the latest full read of each of the 224,721 sites ranked by October 2026, 13.4 million pages:
+Most sites are quietly failing the second audience. clickd has read almost 1M sites so far. From the latest full read of each of the 288,237 sites ranked by November 2026, 15.6 million pages:
 
 | | |
 |---|---|
 | **90%** | of articles don't answer their first question right under it |
-| **80%** | of sites have no `llms.txt` |
-| **56%** | of pages have a description the wrong length |
-| **47%** | of pages have images with nothing to describe them |
+| **78%** | of sites have no `llms.txt` |
+| **55%** | of pages have a description the wrong length |
+| **46%** | of pages have images with nothing to describe them |
 | **1 in 10** | home, service and article pages show their words only after a script runs, and most AI crawlers never run it |
 
 Those are the ones you can count. The rest are harder to see: a `robots.txt` that blocks GPTBot without anyone meaning to, pages that bury the answer under three paragraphs of welcome. These skills give your agent the eyes to see all of it, and the order to fix it in.
