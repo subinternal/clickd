@@ -40,7 +40,7 @@ Set up on mttr.si before the move? It keeps working: the MCP server, the API and
 
 Your site has two audiences now: people, and the machines that answer for them. Google still crawls it. ChatGPT, Gemini, Claude and Perplexity read it too, and then decide whether to quote you or someone else.
 
-Most sites are quietly failing the second audience. From the latest read of each of the 224,721 sites ranked by October 2026, 13.4 million pages:
+Most sites are quietly failing the second audience. clickd has read almost 1M sites so far. From the latest full read of each of the 224,721 sites ranked by October 2026, 13.4 million pages:
 
 | | |
 |---|---|
