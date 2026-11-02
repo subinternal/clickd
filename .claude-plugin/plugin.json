@@ -1,6 +1,6 @@
 {
   "name": "clickd",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "description": "Check and fix a site for search engines and AI assistants. Five skills read the site the way they do, make the fixes worth the most in your own code, and read it again to show what moved. Connects to clickd's MCP server for the full brief and re-reads on demand.",
   "author": { "name": "subinternal", "url": "https://subinternal.com" },
   "homepage": "https://clickd.com/agents",
