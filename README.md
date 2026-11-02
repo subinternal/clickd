@@ -28,7 +28,8 @@ Check yoursite.com with clickd and fix what's worth the most.
 In Claude Code you can add them as a plugin instead, with clickd's MCP server wired in:
 
 ```text
-/plugin install clickd --marketplace subinternal/clickd
+/plugin marketplace add subinternal/clickd
+/plugin install clickd@subinternal
 ```
 
 That's it. The skills work from clickd's free public reports with nothing else to set up. [Connect over MCP](#connect-your-agent-optional-free) later if you want the full brief and a re-read on demand.
