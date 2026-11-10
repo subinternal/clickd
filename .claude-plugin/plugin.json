@@ -1,12 +1,12 @@
 {
   "name": "clickd",
   "version": "2.3.0",
-  "description": "Check and fix a site for search engines and AI assistants. Five skills read the site the way they do, make the fixes worth the most in your own code, and read it again to show what moved. Built on what clickd has learned reading almost 1M sites. Connects to clickd's MCP server for the full brief and re-reads on demand.",
+  "description": "SEO and AI search (GEO/AEO) skills for AI agents. Sixteen skills read your site the way search engines and AI assistants do, make the fixes worth the most in your own code, and read it again to prove what moved. Connects to clickd's MCP server for the full brief, Search Console queries, AI citations and live re-reads.",
   "author": {
     "name": "subinternal",
     "url": "https://subinternal.com"
   },
-  "homepage": "https://clickd.com/agents",
+  "homepage": "https://clickd.com/skills",
   "privacyPolicyUrl": "https://clickd.com/privacy",
   "repository": "https://github.com/subinternal/clickd",
   "mcpServers": "./mcp.json",

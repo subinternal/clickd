@@ -24,20 +24,20 @@ The call that gets the person a key. Over MCP the rulebook, the leaderboard, a s
 
 ### `clickd_signup`
 
-Signs the person up with their email and returns their free key, shown once, with the command to connect with it.
-When: before any call that needs a key, when the person has none.
-Instead: clickd_claim, once connected with the key, to make a site theirs.
-Inputs: `email` is the person's own address.
-Returns: email, key, connect and next.
+Gets a free key, shown once, with the command to connect with it: the person's by email, or a throwaway one.
+When: when a call needs a key and there is none.
+Instead: clickd_claim, with a person's key, to make a site theirs.
+Inputs: `email` is the person's own address; leave it out for a throwaway key, which reads and asks for a few reads an hour.
+Returns: key, connect and next, with email or anonymous.
 Fails: an email already signed up, or not an email, says so; three an hour from one address. Needs no key.
 
 ```
-clickd_signup({ email: "you@example.com" })
+clickd_signup()
 ```
 
 | Input | Type | Needed | What it is |
 |---|---|---|---|
-| `email` | string | yes | The person's email address. |
+| `email` | string | no | The person's email address. Leave it out for a throwaway key. |
 
 Calls `POST /api/v1/signup`.
 
@@ -814,8 +814,8 @@ Listed at /mcp/all only.
 
 ### `clickd_log_work`
 
-Records a step of work on a site for the person's progress page: what you planned, changed or checked, or where you got stuck.
-When: after each step, including one that carries out a proposal or finishes a queued task.
+Records a step of work on a site: what you planned, changed or checked, or where you got stuck.
+When: after each step, including one that carries out a proposal or a queued task.
 Instead: clickd_propose before deploying to a site set to approve; clickd_todo for tasks waiting.
 Inputs: `site` is a domain, like example.com. `step` is planned, changed, checked or stuck; `did` says what. `found`, `files` and `rules` (comma separated) add detail. `proposal` names the proposal carried out, `task` the queued task finished. Never send private data.
 Returns: kept, site, step and note, with proposal or task and left when given.
@@ -859,10 +859,10 @@ Listed at /mcp/all only.
 
 ### `clickd_propose`
 
-Proposes a change before you deploy it, emailing the person what it is with Approve and Decline links that lapse in 72 hours.
+Proposes a change before you deploy it, emailing the person Approve and Decline links that lapse in 72 hours.
 When: before each deploy to a site clickd_proposals says is set to approve.
 Instead: clickd_proposals with the id to wait for the answer; clickd_log_work, naming it, once carried out.
-Inputs: `site` is a domain, like example.com. `title` is the change in a few words; `summary` what it does and why; `rule` the rule id it answers; `pages` the paths it changes, separated by commas; `diff` a unified diff, shown and never applied.
+Inputs: `site` is a domain, like example.com. `title` is the change in a few words; `summary` what it does and why; `rule` the rule id it answers; `pages` the paths it changes, comma separated; `diff` a unified diff, shown and never applied.
 Returns: proposal ({ id, state, deploy, ... }), note and promise.
 Fails: a site not claimed with this key answers not found; 20 proposals a site an hour at most. Needs a person's key.
 

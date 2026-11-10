@@ -2,14 +2,16 @@
 
 <p align="center">
 <a href="https://agentskills.io/specification"><img alt="Agent Skills format" src="https://img.shields.io/badge/format-Agent%20Skills-f78b77"></a>
-<a href="#the-skills"><img alt="5 skills" src="https://img.shields.io/badge/skills-5-f78b77"></a>
+<a href="#the-skills"><img alt="16 skills" src="https://img.shields.io/badge/skills-16-f78b77"></a>
 <a href="https://clickd.com/agents"><img alt="Works in Claude Code, Codex and Cursor" src="https://img.shields.io/badge/works%20in-Claude%20Code%20%7C%20Codex%20%7C%20Cursor-2b2d31"></a>
 <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-2b2d31"></a>
 </p>
 
-<p align="center"><b>Agent skills that read your site the way search engines and AI assistants do,<br>fix it in your own code, and read it again to prove what moved.</b></p>
+<h1 align="center">SEO skills for AI agents</h1>
 
-<p align="center"><a href="https://clickd.com">Reports</a> &nbsp;&nbsp; <a href="https://clickd.com/leaderboard">Leaderboard</a> &nbsp;&nbsp; <a href="https://clickd.com/tools">Free tools</a> &nbsp;&nbsp; <a href="https://clickd.com/docs/reference">API and MCP</a></p>
+<p align="center"><b>Open agentic SEO skills for Claude Code, OpenAI Codex, Cursor and any AI agent.<br>Run technical audits, Search Console keyword research, briefs, schema fixes and post-deploy checks in your own code, verified on the live site by <a href="https://clickd.com/skills">clickd</a>.</b></p>
+
+<p align="center"><a href="https://clickd.com/skills">SEO skills</a> &nbsp;&nbsp; <a href="https://clickd.com">Reports</a> &nbsp;&nbsp; <a href="https://clickd.com/leaderboard">Leaderboard</a> &nbsp;&nbsp; <a href="https://clickd.com/tools">Free tools</a> &nbsp;&nbsp; <a href="https://clickd.com/docs/reference">API and MCP</a></p>
 
 ## Quick start
 
@@ -22,7 +24,7 @@ npx skills add subinternal/clickd
 **2. Tell your agent:**
 
 ```text
-Check yoursite.com with clickd and fix what's worth the most.
+Find and fix the biggest SEO problems on yoursite.com with clickd.
 ```
 
 In Claude Code you can add them as a plugin instead, with clickd's MCP server wired in:
@@ -80,11 +82,21 @@ clickd does the reading and the grading. Your agent does the fixing, in your rep
 
 | Skill | What it does | Version |
 |---|---|---|
-| **[clickd](skills/clickd)** | **Start here.** Checks your site and fixes it, worth the most first. For a shop, it also gets your product pages read right by Google's merchant listings and shopping agents, field by field ([Shop ready](skills/clickd/references/shop-ready.md), built in). | `2.1.0` |
-| [Page system](skills/clickd-page-system) | Builds your page templates so every page reads well for search and assistants. | `2.1.0` |
-| [llms.txt](skills/clickd-llms-txt) | Writes a `/llms.txt` from your own pages, with tests so it never goes stale. | `2.1.0` |
-| [Livecards](skills/clickd-livecards) | Makes a page run inside a post on X: a demo, a tool or a short landing page. | `2.1.0` |
-| [Rank a page](skills/clickd-rank-a-page) | Moves one page up for one search, step by step, with proof at each one. | `2.1.0` |
+| **[clickd](skills/clickd)** | **Start here.** Checks your site and fixes it, worth the most first. For a shop, it also gets your product pages read right by Google's merchant listings and shopping agents, field by field ([Shop ready](skills/clickd/references/shop-ready.md), built in). | `2.3.0` |
+| [Technical SEO](skills/clickd-technical-seo) | Audits and fixes `robots.txt`, XML sitemaps, canonicals, redirect chains, server-rendered HTML and security headers in code, verified live with clickd. | `2.3.0` |
+| [On-page SEO](skills/clickd-on-page-seo) | Rewrites `<title>`, `<meta name="description">`, single `<h1>`, question headings, answer-first openings and AI writing tells (`clickd_tells`) in code. | `2.3.0` |
+| [Schema markup](skills/clickd-schema-markup) | Generates, wires and validates JSON-LD (`Organization`, `LocalBusiness`, `Product`, `Service`, `Article`, `FAQPage`, `BreadcrumbList`) from visible page facts. | `2.3.0` |
+| [Keyword research](skills/clickd-keyword-research) | Mines real Google Search Console queries (`clickd_queries`), striking-distance keywords (positions 4 to 20), CTR gaps and competitor topic gaps. | `2.3.0` |
+| [Content refresh](skills/clickd-content-refresh) | Finds pages losing Search Console clicks (`clickd_traffic`), diagnoses snippet vs substance decay, updates stale facts in code, and checks live. | `2.3.0` |
+| [Content brief](skills/clickd-content-brief) | Turns competitor topic gaps (`clickd_content_next`, `clickd_gaps`) into fact-backed briefs and finished pages with schema and internal links. | `2.3.0` |
+| [Site architecture](skills/clickd-site-architecture) | Audits the internal link graph (`clickd_links`, `clickd_structure`), eliminates orphan pages, connects topic hubs and adds `BreadcrumbList` schema. | `2.3.0` |
+| [Competitor SEO](skills/clickd-competitor-seo) | Benchmarks rivals across clickd's rulebook, topic gaps, backlinks and AI citations (`clickd_rivals`), and builds honest `/vs/` comparison pages. | `2.3.0` |
+| [Local SEO](skills/clickd-local-seo) | Wires specific `LocalBusiness` subtype schema, crawlable NAP (`clickd_check` locations) and genuine service-area pages without doorway spam. | `2.3.0` |
+| [AI visibility (GEO & AEO)](skills/clickd-ai-visibility) | Opens AI search crawlers (`OAI-SearchBot`, `GPTBot`, `ClaudeBot`, `PerplexityBot`), fixes non-JS readability, and tracks live assistant citations (`clickd_citations`). | `2.3.0` |
+| [Page system](skills/clickd-page-system) | Builds your page templates and shared components so every page reads well for search engines and AI assistants. | `2.3.0` |
+| [llms.txt](skills/clickd-llms-txt) | Writes a `/llms.txt` from your own pages and sitemap, with tests so it never goes stale. | `2.3.0` |
+| [Livecards](skills/clickd-livecards) | Makes a page run inside a post on X: a demo, a tool or an interactive page, checked as X's crawler sees it. | `2.3.0` |
+| [Rank a page](skills/clickd-rank-a-page) | Moves one page up for one search through five gates in order, each opened only by proof from the live site. | `2.3.0` |
 
 Each skill is a folder in the open [Agent Skills](https://agentskills.io/specification) format: a `SKILL.md`, the references it links, and its own changelog.
 
