@@ -11,7 +11,7 @@
 
 <p align="center"><b>Open agentic SEO skills for Claude Code, OpenAI Codex, Cursor and any AI agent.<br>Run technical audits, Search Console keyword research, briefs, schema fixes and post-deploy checks in your own code, verified on the live site by <a href="https://clickd.com/skills">clickd</a>.</b></p>
 
-<p align="center"><a href="https://clickd.com/skills">SEO skills</a> &nbsp;&nbsp; <a href="https://clickd.com">Reports</a> &nbsp;&nbsp; <a href="https://clickd.com/leaderboard">Leaderboard</a> &nbsp;&nbsp; <a href="https://clickd.com/tools">Free tools</a> &nbsp;&nbsp; <a href="https://clickd.com/docs/reference">API and MCP</a></p>
+<p align="center"><a href="https://clickd.com/skills">SEO skills</a> &nbsp;&nbsp; <a href="https://clickd.com/integrations">Integrations</a> &nbsp;&nbsp; <a href="https://clickd.com">Reports</a> &nbsp;&nbsp; <a href="https://clickd.com/leaderboard">Leaderboard</a> &nbsp;&nbsp; <a href="https://clickd.com/tools">Free tools</a> &nbsp;&nbsp; <a href="https://clickd.com/docs/reference">API and MCP</a></p>
 
 ## Quick start
 
@@ -99,6 +99,21 @@ clickd does the reading and the grading. Your agent does the fixing, in your rep
 | [Rank a page](skills/clickd-rank-a-page) | Moves one page up for one search through five gates in order, each opened only by proof from the live site. | `2.3.0` |
 
 Each skill is a folder in the open [Agent Skills](https://agentskills.io/specification) format: a `SKILL.md`, the references it links, and its own changelog.
+
+## Search Console & stack guides
+
+Every framework and CMS breaks search and AI crawlers in its own way. Each [integration guide](https://clickd.com/integrations) maps those stack failure modes to real clickd rules, code patterns and agent prompts:
+
+| Stack or data source | What your agent wires and checks |
+|---|---|
+| [Google Search Console](https://clickd.com/integrations/google-search-console) | Live query impressions, CTR gaps, striking-distance keywords (`clickd_queries`) and click decay (`clickd_traffic`) inside your agent. |
+| [Next.js](https://clickd.com/integrations/nextjs) | App Router `generateMetadata`, `app/sitemap.ts`, `app/robots.ts`, streaming SSR and route-level JSON-LD. |
+| [Astro](https://clickd.com/integrations/astro) | Content Collection schemas, static HTML output, `@astrojs/sitemap`, canonical URLs and `/llms.txt` endpoints. |
+| [Shopify](https://clickd.com/integrations/shopify) | Liquid `Product` and `Offer` JSON-LD, variant canonicals, collection pagination and Merchant Center / Universal Cart checks. |
+| [WordPress](https://clickd.com/integrations/wordpress) | Theme templates, duplicate SEO plugin tags, clean `Article` / `LocalBusiness` schema and REST / sitemap hygiene. |
+| [Webflow](https://clickd.com/integrations/webflow) | CMS collection templates, custom head JSON-LD, auto-sitemap cleanup, 301 redirect chains and alt text. |
+| [SvelteKit](https://clickd.com/integrations/sveltekit) | Server `load` functions, `<svelte:head>` metadata, prerendered routes and server-rendered `llms.txt` / sitemap routes. |
+| [Lovable, Bolt, v0 & React SPAs](https://clickd.com/integrations/vibe-coding) | Fixing empty `<div id="root">` shells so Googlebot and non-JS AI crawlers (`GPTBot`, `ClaudeBot`, `PerplexityBot`) read real HTML. |
 
 ## Install
 
