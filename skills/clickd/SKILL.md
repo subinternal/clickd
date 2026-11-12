@@ -59,6 +59,7 @@ Over MCP, after each step from 2 on, call `clickd_log_work({ site, step, did })`
 | A site's report, as the public sees it | `https://clickd.com/report/<domain>` |
 | A fresh read of a site | `https://clickd.com/read?domain=<domain>`, which puts it in line and sends you to `/reading/<token>` to watch it |
 | The rulebook | `https://clickd.com/rulebook` |
+| Google ranking signals explorer and live site lens | `https://clickd.com/ranking-signals` or `https://clickd.com/ranking-signals?site=<domain>` |
 | Product data on one page, as JSON | `https://clickd.com/tools/schema-markup-checker.json?url=<page>` |
 | Headings, share tags, redirects, speed or AI crawlers on one page | `https://clickd.com/h1-checker?url=<page>`, `https://clickd.com/og-image-checker?url=<page>`, `https://clickd.com/redirect-checker?url=<page>`, `https://clickd.com/website-speed-test?url=<page>` or `https://clickd.com/ai-crawler-checker?url=<domain>` |
 | Every API call, for an agent | `https://clickd.com/docs/reference.md` |
@@ -69,7 +70,7 @@ The checks share a free allowance of 200 an hour from one address, and new reads
 
 Any key reads the public parts of any site clickd has a public report of with `clickd_site`, `clickd_brief`, `clickd_pages` and `clickd_changes`, and may ask for a read with `clickd_rescan`. It also reaches `clickd_rules`, `clickd_leaderboard`, the free checks in `clickd_check` and `clickd_schema_create`. A site the person has claimed adds its citations in `clickd_citations`, its rivals in `clickd_rivals`, the work board in `clickd_todo` and approval by email. These are the 17 tools listed at `https://clickd.com/mcp`.
 
-The deeper tools, such as a site's links, map, structure, topics and signs of generated text, and on a claimed site its Search Console figures, visits and worked examples, are listed at `https://clickd.com/mcp/all`. Connect that address in place of `/mcp` to see them; every tool name answers at either address. [references/tools.md](references/tools.md) marks each tool.
+The deeper tools, such as a site's links, map, structure, topics, ranking signals (`clickd_signals`) and signs of generated text, and on a claimed site its Search Console figures, visits and worked examples, are listed at `https://clickd.com/mcp/all`. Connect that address in place of `/mcp` to see them; every tool name answers at either address. [references/tools.md](references/tools.md) marks each tool, and [references/ranking-signals.md](references/ranking-signals.md) covers URL-prefix sitechunks, page roles, salient terms, originality and AI corroboration.
 
 ## 1. Read the site as clickd last read it
 

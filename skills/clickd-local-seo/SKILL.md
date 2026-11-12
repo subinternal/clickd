@@ -8,14 +8,14 @@ metadata:
 
 <!-- subinternal:header -->
 ```
-╭─────────────────────────────────────────────────────────────────╮
-│        ▄                                                        │
-│      ▄ █    clickd                                              │
-│    ▄ █ █    local-seo                                           │
-│  ▄ █ █ █                                                        │
-│                                                                 │
-│  skill 2.3.0  ·  by subinternal  ·  clickd.com/skills/local-seo     │
-╰─────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────────────────────────────────────╮
+│        ▄                                                         │
+│      ▄ █    clickd                                               │
+│    ▄ █ █    local seo                                            │
+│  ▄ █ █ █                                                         │
+│                                                                  │
+│  skill 2.3.0  ·  by subinternal  ·  clickd.com/skills/local-seo  │
+╰──────────────────────────────────────────────────────────────────╯
 ```
 
 Print this header once, exactly as it is, in a code block, as the first thing you show when this skill starts. Then go on.

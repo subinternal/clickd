@@ -8,14 +8,14 @@ metadata:
 
 <!-- subinternal:header -->
 ```
-╭─────────────────────────────────────────────────────────────────╮
-│        ▄                                                        │
-│      ▄ █    clickd                                              │
-│    ▄ █ █    ai-visibility                                       │
-│  ▄ █ █ █                                                        │
-│                                                                 │
-│  skill 2.3.0  ·  by subinternal  ·  clickd.com/skills/ai-visibility │
-╰─────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────────────────────────────────────────╮
+│        ▄                                                             │
+│      ▄ █    clickd                                                   │
+│    ▄ █ █    ai visibility (geo & aeo)                                │
+│  ▄ █ █ █                                                             │
+│                                                                      │
+│  skill 2.3.0  ·  by subinternal  ·  clickd.com/skills/ai-visibility  │
+╰──────────────────────────────────────────────────────────────────────╯
 ```
 
 Print this header once, exactly as it is, in a code block, as the first thing you show when this skill starts. Then go on.

@@ -11,7 +11,7 @@
 
 <p align="center"><b>Open agentic SEO skills for Claude Code, OpenAI Codex, Cursor and any AI agent.<br>Run technical audits, Search Console keyword research, briefs, schema fixes and post-deploy checks in your own code, verified on the live site by <a href="https://clickd.com/skills">clickd</a>.</b></p>
 
-<p align="center"><a href="https://clickd.com/skills">SEO skills</a> &nbsp;&nbsp; <a href="https://clickd.com/integrations">Integrations</a> &nbsp;&nbsp; <a href="https://clickd.com">Reports</a> &nbsp;&nbsp; <a href="https://clickd.com/leaderboard">Leaderboard</a> &nbsp;&nbsp; <a href="https://clickd.com/tools">Free tools</a> &nbsp;&nbsp; <a href="https://clickd.com/docs/reference">API and MCP</a></p>
+<p align="center"><a href="https://clickd.com/skills">SEO skills</a> &nbsp;&nbsp; <a href="https://clickd.com/integrations">Integrations</a> &nbsp;&nbsp; <a href="https://clickd.com/ranking-signals">Ranking signals</a> &nbsp;&nbsp; <a href="https://clickd.com">Reports</a> &nbsp;&nbsp; <a href="https://clickd.com/leaderboard">Leaderboard</a> &nbsp;&nbsp; <a href="https://clickd.com/tools">Free tools</a> &nbsp;&nbsp; <a href="https://clickd.com/docs/reference">API and MCP</a></p>
 
 ## Quick start
 
@@ -73,6 +73,7 @@ clickd does the reading and the grading. Your agent does the fixing, in your rep
 |---|---|
 | *"Check example.com with clickd and fix what's worth the most."* | Reads the site, ranks every fix by worth, makes the top ones in your code, reads it again. |
 | *"Why isn't ChatGPT mentioning us?"* | Shows your site the way an agent gets it: what it can read, what it has to cut away, what it never sees. |
+| *"Check our Google ranking signals and folder health."* | Audits URL-prefix sitechunks, Orbit page roles (including YMYL), salient terms, anchor alignment and originality (`clickd_signals`). |
 | *"Get our product pages ready for Google Shopping."* | Fixes the Product structured data in your templates, field by field, checked on the live pages. |
 | *"Add an llms.txt."* | Builds one from your own pages, with tests so it never goes stale. |
 | *"Get our drain repair page onto page one."* | Runs a campaign on one page for one search, through five gates, each opened only by proof. |
@@ -82,7 +83,7 @@ clickd does the reading and the grading. Your agent does the fixing, in your rep
 
 | Skill | What it does | Version |
 |---|---|---|
-| **[clickd](skills/clickd)** | **Start here.** Checks your site and fixes it, worth the most first. For a shop, it also gets your product pages read right by Google's merchant listings and shopping agents, field by field ([Shop ready](skills/clickd/references/shop-ready.md), built in). | `2.3.0` |
+| **[clickd](skills/clickd)** | **Start here.** Checks your site and fixes it, worth the most first. Includes [Ranking signals](skills/clickd/references/ranking-signals.md) (`clickd_signals`) for sitechunks, page roles and originality, plus [Shop ready](skills/clickd/references/shop-ready.md) for Google merchant listings and shopping agents. | `2.3.0` |
 | [Technical SEO](skills/clickd-technical-seo) | Audits and fixes `robots.txt`, XML sitemaps, canonicals, redirect chains, server-rendered HTML and security headers in code, verified live with clickd. | `2.3.0` |
 | [On-page SEO](skills/clickd-on-page-seo) | Rewrites `<title>`, `<meta name="description">`, single `<h1>`, question headings, answer-first openings and AI writing tells (`clickd_tells`) in code. | `2.3.0` |
 | [Schema markup](skills/clickd-schema-markup) | Generates, wires and validates JSON-LD (`Organization`, `LocalBusiness`, `Product`, `Service`, `Article`, `FAQPage`, `BreadcrumbList`) from visible page facts. | `2.3.0` |
